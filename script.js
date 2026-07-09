@@ -118,13 +118,6 @@ function closeAboutMac() {
 
 const NOTIFICATIONS = [
   {
-    id: "award",
-    app: "Zoho WorkDrive",
-    title: "Quick Learner Award",
-    body: "Recognized for rapid adaptation and shipping production-critical workflows.",
-    action: () => { openFinderWindow(); switchTab("experience"); },
-  },
-  {
     id: "storage",
     app: "System",
     title: "Storage optimized",
@@ -137,6 +130,13 @@ const NOTIFICATIONS = [
     title: "Best Outgoing Student",
     body: "Honored for academics, leadership, and community service (2019–2023).",
     action: () => { openFinderWindow(); switchTab("education"); },
+  },
+  {
+    id: "role",
+    app: "Zoho",
+    title: "Member Technical Staff",
+    body: "Building scalable backend systems for enterprise SaaS — Java, Spring Boot, and distributed services.",
+    action: () => { openFinderWindow(); switchTab("experience"); },
   },
 ];
 
