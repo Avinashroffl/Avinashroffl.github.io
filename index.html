@@ -2,23 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Avinash R • macOS Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Avinash R • Portfolio</title>
     <meta
       name="description"
-      content="macOS-style portfolio for Avinash R – Member Technical Staff at Zoho, Full Stack Developer, Best Outgoing Student (IT'23 @ TCE)."
+      content="Portfolio for Avinash R – macOS desktop on laptop, iPhone-style experience on mobile. Member Technical Staff at Zoho, Backend Developer (Java & Spring Boot)."
     />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <!-- macOS-style login screen -->
-    <div id="login-screen" class="login-screen">
+    <div id="login-screen" class="login-screen macos-only">
       <div class="login-inner">
         <img class="login-avatar" src="./profile.jpeg" alt="Avinash R" />
         <div class="login-name">Avinash R</div>
@@ -26,7 +29,76 @@
       </div>
     </div>
 
-    <div class="desktop">
+    <!-- Spotlight search -->
+    <div id="spotlight" class="spotlight macos-only" hidden>
+      <div class="spotlight-panel" role="dialog" aria-label="Spotlight Search">
+        <div class="spotlight-input-row">
+          <svg class="spotlight-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="spotlight-input" class="spotlight-input" type="search" placeholder="Spotlight Search" autocomplete="off" spellcheck="false" />
+        </div>
+        <ul id="spotlight-results" class="spotlight-results"></ul>
+        <div class="spotlight-hint">↑↓ navigate · Enter open · Esc close</div>
+      </div>
+    </div>
+
+    <!-- About This Mac -->
+    <div id="about-mac" class="about-mac macos-only" hidden>
+      <div class="about-mac-panel" role="dialog" aria-label="About This Mac">
+        <button type="button" class="about-mac-close" id="about-mac-close" aria-label="Close">×</button>
+        <div class="about-mac-logo">
+          <svg width="48" height="58" viewBox="0 0 170 200" fill="currentColor"><path d="M150.4 172.2c-7.9 11.6-16.5 23.2-29.3 23.4-12.8.3-16.9-7.6-31.5-7.6s-19.2 7.3-31.2 7.8c-12.6.5-22.2-12.5-30.2-24.1C12.4 148.1.3 107.4 17.3 79.4c8.4-13.9 23.5-22.7 39.8-23 12.4-.2 24.1 8.3 31.6 8.3 7.6 0 21.8-10.3 36.7-8.8 6.3.3 23.8 2.5 35.1 18.9-.9.6-21 12.3-20.7 36.6.3 29.1 25.5 38.8 25.8 38.9-.3.8-4 13.8-15.2 27.9zM110.6 17.3c7-8.5 11.7-20.3 10.4-32.1-10.1.4-22.2 6.7-29.4 15.1-6.4 7.5-12.1 19.5-10.6 31 11.2.9 22.6-5.7 29.6-14z"/></svg>
+        </div>
+        <h2 class="about-mac-title">AvinashOS</h2>
+        <p class="about-mac-version">Portfolio 2.0 · Sequoia Edition</p>
+        <dl class="about-mac-specs">
+          <div><dt>Chip</dt><dd>Java · Spring Boot · Kafka</dd></div>
+          <div><dt>Memory</dt><dd>3+ yrs backend · Zoho WorkDrive</dd></div>
+          <div><dt>Storage</dt><dd>100+ TB saved daily</dd></div>
+          <div><dt>Display</dt><dd>B.Tech IT · CGPA 9.49 · TCE</dd></div>
+          <div><dt>Serial</dt><dd>Best Outgoing Student ’23</dd></div>
+        </dl>
+        <button type="button" class="btn-secondary about-mac-btn" data-switch-tab="about" id="about-mac-more">More Info…</button>
+      </div>
+    </div>
+
+    <!-- Notification Center -->
+    <aside id="notification-center" class="notification-center macos-only" hidden aria-label="Notification Center">
+      <div class="nc-header">
+        <span>Notification Center</span>
+        <button type="button" class="nc-clear" id="nc-clear">Clear</button>
+      </div>
+      <div class="nc-list" id="nc-list"></div>
+    </aside>
+
+    <!-- Boot banners (top-right) -->
+    <div id="banner-stack" class="banner-stack macos-only" aria-live="polite"></div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast macos-only" hidden role="status"></div>
+
+    <div class="desktop macos-only">
+      <!-- Desktop icons -->
+      <div class="desktop-icons" aria-hidden="false">
+        <button type="button" class="desktop-icon" data-desktop-tab="about">
+          <span class="desktop-icon-img desktop-icon-img--finder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+          </span>
+          <span class="desktop-icon-label">About Me</span>
+        </button>
+        <button type="button" class="desktop-icon" data-desktop-tab="projects">
+          <span class="desktop-icon-img desktop-icon-img--folder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg>
+          </span>
+          <span class="desktop-icon-label">Projects</span>
+        </button>
+        <button type="button" class="desktop-icon" id="desktop-terminal">
+          <span class="desktop-icon-img desktop-icon-img--terminal">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          </span>
+          <span class="desktop-icon-label">Terminal</span>
+        </button>
+      </div>
+
       <!-- Top menu bar -->
       <header class="menu-bar">
         <div class="menu-left">
@@ -38,21 +110,73 @@
             <button class="menu-item" data-menu-tab="about">About</button>
             <button class="menu-item" data-menu-tab="experience">Experience</button>
             <button class="menu-item" data-menu-tab="projects">Projects</button>
+            <button class="menu-item" data-menu-tab="skills">Skills</button>
             <button class="menu-item" data-menu-tab="education">Education</button>
           </nav>
         </div>
         <div class="menu-right">
-          <span id="menu-time" class="menu-time"></span>
+          <button type="button" class="menu-status" id="spotlight-trigger" aria-label="Open Spotlight" title="Spotlight (⌘K)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </button>
+          <button type="button" class="menu-status" id="control-center-trigger" aria-label="Control Center" title="Control Center">
+            <svg width="14" height="12" viewBox="0 0 24 18" fill="currentColor"><rect x="1" y="1" width="9" height="7" rx="1.5"/><rect x="14" y="1" width="9" height="7" rx="1.5"/><rect x="1" y="10" width="9" height="7" rx="1.5"/><rect x="14" y="10" width="9" height="7" rx="1.5"/></svg>
+          </button>
+          <button type="button" class="menu-status" id="nc-trigger" aria-label="Notification Center" title="Notifications">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="nc-badge" id="nc-badge" hidden>3</span>
+          </button>
+          <span class="menu-status menu-status--wifi" title="Connected" aria-hidden="true">
+            <svg width="14" height="12" viewBox="0 0 24 18" fill="currentColor"><path d="M12 17.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm-4.24-4.24a6 6 0 0 1 8.48 0l-1.41 1.41a4 4 0 0 0-5.66 0l-1.41-1.41zm-2.83-2.83a10 10 0 0 1 14.14 0l-1.41 1.41a8 8 0 0 0-11.32 0L4.93 10.43zM1.05 6.05a15 15 0 0 1 21.9 0l-1.41 1.41a13 13 0 0 0-19.08 0L1.05 6.05z"/></svg>
+          </span>
+          <button type="button" class="menu-time" id="menu-time" title="Open Notification Center"></button>
         </div>
         <div id="apple-menu" class="apple-menu">
-          <button type="button" class="apple-menu-item" data-switch-tab="about">
+          <button type="button" class="apple-menu-item" id="apple-about-mac">
             About This Mac
+          </button>
+          <button type="button" class="apple-menu-item" id="apple-spotlight">
+            Spotlight Search…
+          </button>
+          <button type="button" class="apple-menu-item" id="apple-terminal">
+            Open Terminal
           </button>
           <div class="apple-menu-separator"></div>
           <button type="button" class="apple-menu-item" id="apple-lock">
             <svg class="lock-icon" width="12" height="14" viewBox="0 0 24 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="18" height="14" rx="2"/><path d="M7 12V8a5 5 0 0 1 10 0v4"/></svg>
             Lock Screen
           </button>
+        </div>
+
+        <!-- Control Center popover -->
+        <div id="control-center" class="control-center" hidden>
+          <div class="cc-grid">
+            <button type="button" class="cc-tile cc-tile--wide is-on" id="cc-wifi">
+              <span class="cc-tile-icon" aria-hidden="true">
+                <svg width="16" height="14" viewBox="0 0 24 18" fill="currentColor"><path d="M12 17.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm-4.24-4.24a6 6 0 0 1 8.48 0l-1.41 1.41a4 4 0 0 0-5.66 0l-1.41-1.41zm-2.83-2.83a10 10 0 0 1 14.14 0l-1.41 1.41a8 8 0 0 0-11.32 0L4.93 10.43z"/></svg>
+              </span>
+              <span><strong>Wi‑Fi</strong><small>Connected</small></span>
+            </button>
+            <button type="button" class="cc-tile" id="cc-focus">
+              <span class="cc-tile-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              </span>
+              <span><strong>Focus</strong><small>Off</small></span>
+            </button>
+            <button type="button" class="cc-tile" id="cc-dark">
+              <span class="cc-tile-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+              </span>
+              <span><strong>Appearance</strong><small>Dark</small></span>
+            </button>
+          </div>
+          <div class="cc-slider-row">
+            <label for="cc-brightness">Display</label>
+            <input type="range" id="cc-brightness" min="40" max="100" value="100" />
+          </div>
+          <div class="cc-slider-row">
+            <label for="cc-sound">Sound</label>
+            <input type="range" id="cc-sound" min="0" max="100" value="70" />
+          </div>
         </div>
       </header>
 
@@ -61,9 +185,9 @@
         <section id="finder-window" class="window window-finder is-active" data-window>
           <header class="window-header" data-drag-handle>
             <div class="window-controls">
-              <button class="btn-close" data-window-close></button>
-              <button class="btn-minimize" data-window-minimize></button>
-              <button class="btn-full"></button>
+              <button class="btn-close" data-window-close aria-label="Close"></button>
+              <button class="btn-minimize" data-window-minimize aria-label="Minimize"></button>
+              <button class="btn-full" data-window-maximize aria-label="Maximize"></button>
             </div>
             <div class="finder-toolbar">
               <div class="finder-nav">
@@ -88,6 +212,9 @@
                 <button class="finder-sidebar-item" data-tab="projects">
                   <span class="finder-sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg></span> Projects
                 </button>
+                <button class="finder-sidebar-item" data-tab="skills">
+                  <span class="finder-sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg></span> Skills
+                </button>
                 <button class="finder-sidebar-item" data-tab="education">
                   <span class="finder-sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg></span> Education
                 </button>
@@ -97,7 +224,7 @@
                 <a class="finder-sidebar-item" href="https://github.com/avinashroffl" target="_blank" rel="noreferrer">
                   <span class="finder-sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span> GitHub
                 </a>
-                <a class="finder-sidebar-item" href="https://in.linkedin.com/in/avinashrofficial" target="_blank" rel="noreferrer">
+                <a class="finder-sidebar-item" href="https://www.linkedin.com/in/avinashrofficial/" target="_blank" rel="noreferrer">
                   <span class="finder-sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span> LinkedIn
                 </a>
                 <a class="finder-sidebar-item" href="mailto:avinashroffl@gmail.com">
@@ -108,6 +235,7 @@
 
             <!-- Mobile sidebar toggle -->
             <button class="finder-sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">☰</button>
+            <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
 
             <!-- Content panels -->
             <div class="finder-content">
@@ -118,8 +246,8 @@
                     <img class="avatar-placeholder" src="./profile.jpeg" alt="Avinash R" />
                     <div>
                       <h1 class="hero-name">Avinash R</h1>
-                      <p class="hero-role">Member Technical Staff @ Zoho • Full Stack Developer</p>
-                      <p class="hero-meta">Greater Madurai Area · IT'23 @ TCE · Best Outgoing Student (2019–23)</p>
+                      <p class="hero-role">Member Technical Staff @ Zoho · Backend Developer (Java &amp; Spring Boot)</p>
+                      <p class="hero-meta">Chennai / Greater Madurai · IT'23 @ TCE · Best Outgoing Student (2019–23)</p>
                       <div class="hero-actions">
                         <button class="btn-primary" data-switch-tab="projects">View Projects</button>
                         <button class="btn-secondary" data-switch-tab="experience">Experience</button>
@@ -128,15 +256,22 @@
                     </div>
                   </div>
                   <p class="about-text">
-                    Empowered in the realm of web development, I'm a full stack
-                    developer who loves building scalable, user-centric products. I
-                    graduated in Information Technology from Thiagarajar College of
-                    Engineering (Best Outgoing Student 2019–23) and currently work as
-                    a Member Technical Staff at Zoho, where I focus on storage,
-                    versioning and admin experiences for Zoho WorkDrive. My journey
-                    blends engineering depth with leadership, collaboration and a
-                    strong drive to ship impactful features.
+                    Results-driven Senior Java Software Engineer with 3+ years of experience
+                    architecting, developing, and modernizing scalable backend systems for
+                    enterprise SaaS products. Expertise across the full SDLC in Agile
+                    environments, leveraging Java, Spring Boot, Kafka, and Redis to design
+                    high-performance REST APIs, distributed systems, and event-driven
+                    architectures. At Zoho WorkDrive I own storage, versioning, SSL/custom-domain
+                    automation, and admin experiences — optimizing databases, automating CI/CD
+                    workflows, and transforming legacy flows into robust, cloud-native solutions.
                   </p>
+                  <div class="about-highlights">
+                    <div class="highlight-chip">100+ TB storage saved daily</div>
+                    <div class="highlight-chip">95% faster Large File View APIs</div>
+                    <div class="highlight-chip">SSL enablement: 3 days → &lt;4 hrs</div>
+                    <div class="highlight-chip">1,000+ support tickets resolved</div>
+                    <div class="highlight-chip">Quick Learner Award · Zoho WorkDrive</div>
+                  </div>
                 </div>
               </div>
 
@@ -144,53 +279,62 @@
               <div class="finder-panel" data-panel="experience">
                 <article class="timeline">
                   <div class="timeline-item">
-                    <h2>Member Technical Staff · Zoho</h2>
-                    <p class="timeline-meta">Jun 2023 – Present · Greater Madurai</p>
-                    <p>
-                      Working on Zoho WorkDrive's storage and versioning platform:
-                      Version Retention Settings, Large File View, storage
-                      monitoring and alerts, and an overhauled admin dashboard.
-                      Handles version cleanup across 5+ global data centers,
-                      saving 100+ TB of file versions daily, while resolving 1000+
-                      customer issues around uploads, downloads and custom domains.
-                    </p>
+                    <h2>Member Technical Staff · Zoho Corporation</h2>
+                    <p class="timeline-meta">Jun 2023 – Present · Madurai, Tamil Nadu · Java, REST APIs, MySQL</p>
+                    <ul class="bullet-list">
+                      <li>Engineered Version Retention Settings across 8+ global data centers, automating deletion of older file versions to save <strong>100+ TB of storage daily</strong> for sync-agent customers.</li>
+                      <li>Built Large File View management, optimizing backend API response times by <strong>95%</strong> for instant tracking and deletion of heavy files.</li>
+                      <li>Automated SSL purchase and domain verification with Certman + scheduled polling, cutting custom-domain enablement from <strong>3 days to under 4 hours</strong>.</li>
+                      <li>Implemented Storage Monitoring &amp; Alerts (e.g. 80% thresholds) for proactive capacity planning.</li>
+                      <li>Revamped the Admin Dashboard for clearer storage administration and higher productivity.</li>
+                      <li>Debugged and resolved <strong>1,000+</strong> support tickets on uploads, downloads, and custom domains.</li>
+                      <li>Mentored junior developers and enforced code quality through peer reviews.</li>
+                      <li><strong>Corporate Recognition:</strong> Quick Learner Award, Zoho WorkDrive team.</li>
+                    </ul>
                   </div>
                   <div class="timeline-item">
-                    <h2>Project Trainee · Zoho</h2>
-                    <p class="timeline-meta">Jan 2023 – Jun 2023</p>
-                    <p>
-                      Built Bulk Version Deletion and Restore Deleted Versions for
-                      Zoho WorkDrive, enabling safe, large‑scale cleanup with the
-                      ability to recover important historical versions on demand.
-                    </p>
+                    <h2>Project Trainee · Zoho Corporation</h2>
+                    <p class="timeline-meta">Jan 2023 – May 2023 · Madurai · Java, API docs, performance testing</p>
+                    <ul class="bullet-list">
+                      <li>Developed Bulk Version Deletion so users can clear multiple file versions instantly, with selective retention for milestone versions.</li>
+                      <li>Engineered Restore Deleted Versions for one-click recovery of accidentally deleted data.</li>
+                      <li>Contributed to core backend development, SQL optimization, debugging, and API documentation.</li>
+                    </ul>
                   </div>
                   <div class="timeline-item">
                     <h2>Summer Intern · Zoho</h2>
-                    <p class="timeline-meta">Jul 2022 – Jul 2022</p>
+                    <p class="timeline-meta">Jul 2022 · Greater Madurai</p>
                     <p>
-                      Developed a full‑featured e‑commerce platform with separate
-                      admin and customer portals including catalog management,
-                      secure auth, cart, checkout, and feedback flows.
+                      Built a full-featured e-commerce platform with separate admin and customer
+                      portals — catalog management, secure auth, cart, checkout, order history,
+                      ratings, and feedback.
                     </p>
                   </div>
                   <div class="timeline-item">
                     <h2>Web Developer · Byonz Ventures Pvt Ltd</h2>
                     <p class="timeline-meta">Oct 2020 – Dec 2020</p>
                     <p>
-                      Built and deployed a full stack web application with a team
-                      of three using React and Firebase, gaining hands‑on
-                      experience in dynamic UIs, deployment and collaboration.
+                      Built and deployed a full-stack web app with a team of three using React and
+                      Firebase — first production dynamic project, focused on collaboration and
+                      deployment.
                     </p>
                   </div>
                   <div class="timeline-item">
-                    <h2>Leadership & Ambassador Roles</h2>
-                    <p class="timeline-meta">2020 – 2021 · IITs, IIMs, ACM, Techfest & more</p>
+                    <h2>Machine Learning Intern · ACM Student Chapter, IIT (ISM) Dhanbad</h2>
+                    <p class="timeline-meta">Jul 2020 – Aug 2020 · ACM League of Code 2.0</p>
                     <p>
-                      Campus Ambassador and representative for E‑Cell IIT Madras,
-                      ELAN & ηvision (IIT Hyderabad), Techfest IIT Bombay, ACM
-                      Student Chapter (IIT ISM Dhanbad), IEEE IIIT‑Delhi, and
-                      others — strengthening communication, community building and
-                      marketing skills.
+                      Collaborative ML solutions from scratch, intensive project development, and
+                      deployment including front-end elements.
+                    </p>
+                  </div>
+                  <div class="timeline-item">
+                    <h2>Leadership &amp; Campus Ambassador Roles</h2>
+                    <p class="timeline-meta">2020 – 2021 · IITs, IIMs, ACM, Techfest &amp; more</p>
+                    <p>
+                      Campus Ambassador / Representative for E-Cell IIT Madras, ELAN &amp; ηvision
+                      (IIT Hyderabad), Techfest IIT Bombay, ACM Student Chapter (IIT ISM Dhanbad),
+                      IEEE IIIT-Delhi, EXIMIUS IIM Bangalore, E-Cell IIT Kanpur, and International
+                      MUN — strengthening communication, community building, and marketing skills.
                     </p>
                   </div>
                 </article>
@@ -200,35 +344,88 @@
               <div class="finder-panel" data-panel="projects">
                 <div class="projects-grid">
                   <article class="card">
-                    <h2>E‑commerce Site (Java Backend)</h2>
-                    <p class="card-meta">Java Spring Boot · Vue.js</p>
+                    <h2>Full-Stack E-Commerce Platform</h2>
+                    <p class="card-meta">Java · Spring Boot · Vue.js · Docker · Cloud Hosting</p>
                     <p>
-                      Full‑stack e‑commerce app with separate admin and customer
-                      portals, secure authentication, rich catalog management, cart,
-                      checkout and order history with ratings and feedback.
+                      Scalable app with distinct Admin and Customer portals. Secure auth, dynamic
+                      cart, checkout, order history, ratings, inventory management, and real-time
+                      stock visibility. Containerized with Docker and launched on cloud-hosted
+                      services using layered architecture.
                     </p>
                     <a href="https://youtube.com/watch?v=qt3w1hJhvSU" target="_blank" rel="noreferrer" class="card-link">View Demo</a>
                   </article>
                   <article class="card">
-                    <h2>Personal Resume Webpage</h2>
-                    <p class="card-meta">Static Site · Portfolio</p>
+                    <h2>macOS Portfolio (This Site)</h2>
+                    <p class="card-meta">HTML · CSS · Vanilla JS</p>
                     <p>
-                      Minimal, fast personal site to showcase achievements, projects
-                      and learnings, focused on responsive design and clean content
-                      structure.
+                      Finder-inspired personal portfolio with lock screen, dock, Spotlight search,
+                      draggable window, and responsive mobile layout — all static for GitHub Pages.
                     </p>
                     <a href="https://avinashroffl.github.io/" target="_blank" rel="noreferrer" class="card-link">Visit Site</a>
                   </article>
                   <article class="card">
                     <h2>Madurai District Corona Counter</h2>
-                    <p class="card-meta">HTML · CSS · JS · Chart.js · PHP</p>
+                    <p class="card-meta">HTML · CSS · JS · Chart.js · Bootstrap · PHP</p>
                     <p>
-                      Real‑time COVID‑19 tracker for Madurai during lockdown using an
-                      open‑source API, visualizing live district‑level data with
-                      dynamic charts and statistics.
+                      Real-time COVID-19 tracker for Madurai during lockdown using an open-source
+                      API, visualizing live district-level data with dynamic charts and statistics.
                     </p>
                     <a href="https://coronatrackermadurai.000webhostapp.com/" target="_blank" rel="noreferrer" class="card-link">View Project</a>
                   </article>
+                </div>
+              </div>
+
+              <!-- Skills panel -->
+              <div class="finder-panel" data-panel="skills">
+                <div class="skills-grid">
+                  <section class="skill-group">
+                    <h2>Languages</h2>
+                    <div class="skill-tags">
+                      <span>Java</span><span>Python</span>
+                    </div>
+                  </section>
+                  <section class="skill-group">
+                    <h2>Frameworks &amp; Technologies</h2>
+                    <div class="skill-tags">
+                      <span>Spring Boot</span><span>Spring Data JPA</span><span>Servlets</span>
+                      <span>JSP</span><span>JDBC</span><span>Katharsis</span>
+                      <span>Swagger</span><span>Protocol Buffers</span>
+                    </div>
+                  </section>
+                  <section class="skill-group">
+                    <h2>Databases &amp; Caching</h2>
+                    <div class="skill-tags">
+                      <span>MySQL</span><span>Redis</span>
+                    </div>
+                  </section>
+                  <section class="skill-group">
+                    <h2>Cloud, DevOps &amp; Messaging</h2>
+                    <div class="skill-tags">
+                      <span>Apache Kafka</span><span>GCP</span><span>Docker</span>
+                    </div>
+                  </section>
+                  <section class="skill-group">
+                    <h2>Architecture &amp; Practices</h2>
+                    <div class="skill-tags">
+                      <span>System Design (HLD / LLD)</span><span>REST API Design</span>
+                      <span>OOP</span><span>Layered Architecture</span><span>SDLC</span>
+                      <span>Code Reviews</span><span>Generative AI</span>
+                    </div>
+                  </section>
+                  <section class="skill-group">
+                    <h2>Testing &amp; Tools</h2>
+                    <div class="skill-tags">
+                      <span>JUnit</span><span>Maven</span><span>GitHub</span><span>Postman</span>
+                      <span>IntelliJ IDEA</span><span>Eclipse</span><span>VS Code</span>
+                      <span>Cursor</span><span>GitHub Copilot</span>
+                    </div>
+                  </section>
+                  <section class="skill-group">
+                    <h2>Spoken Languages</h2>
+                    <div class="skill-tags">
+                      <span>English</span><span>Tamil</span><span>Hindi</span>
+                    </div>
+                  </section>
                 </div>
               </div>
 
@@ -237,41 +434,62 @@
                 <article class="timeline">
                   <div class="timeline-item">
                     <h2>B.Tech, Information Technology · Thiagarajar College of Engineering</h2>
-                    <p class="timeline-meta">2019 – 2023 · CGPA 9.49</p>
-                    <p>
-                      Awarded <strong>Best Outgoing Student (2019–2023)</strong> for
-                      excellence in academics, leadership, technical and cultural
-                      contributions and community service. Published papers,
-                      presented at international conferences and reached finals of
-                      events at IITs and NITs.
-                    </p>
+                    <p class="timeline-meta">Jun 2019 – May 2023 · CGPA 9.49 · Madurai</p>
+                    <ul class="bullet-list">
+                      <li>Awarded <strong>Best Outgoing Student (2019–2023)</strong> for academics, leadership, technical contributions, and community service.</li>
+                      <li>Campus leadership: Department General Secretary and Placement Coordinator — mentored juniors and organized campus-wide tech fests.</li>
+                      <li>Published papers, presented at international conferences (incl. NIT Patna), and reached finals at IIT/NIT events.</li>
+                    </ul>
                   </div>
                   <div class="timeline-item">
-                    <h2>Higher Secondary · Velammal MHSS</h2>
+                    <h2>Higher Secondary · Velammal Matriculation Higher Secondary School</h2>
                     <p class="timeline-meta">2016 – 2018</p>
                     <p>
-                      Secured First Class in HSC board exams and actively
-                      participated in inter and intra‑school competitions.
+                      Secured First Class in HSC board exams and actively participated in inter-
+                      and intra-school competitions.
                     </p>
                   </div>
                   <div class="timeline-item">
-                    <h2>SSLC · Sri Aurobindo MHSS</h2>
+                    <h2>SSLC · Sri Aurobindo Matriculation Higher Secondary School</h2>
                     <p class="timeline-meta">2010 – 2016</p>
                     <p>
-                      Proficiency and Best Student awards, top rank in SSLC board
-                      exams and active involvement in NCC and sports.
+                      Proficiency and Best Student awards, top rank in SSLC board exams, and active
+                      involvement in NCC, throwball, and badminton.
                     </p>
                   </div>
                   <div class="timeline-item">
-                    <h2>Selected Certifications</h2>
-                    <p>
-                      Google (Networking, Industrial IoT), Stanford Machine
-                      Learning, IBM Data Science, Coursera Android and Cybersecurity
-                      courses, Udemy Frontend and Python, MATLAB Onramp and more.
-                    </p>
+                    <h2>Certifications</h2>
+                    <p class="timeline-meta">Selected certifications</p>
+                    <ul class="bullet-list">
+                      <li>Spring Boot (Udemy) · SQL 50 · HackerRank REST API (Java)</li>
+                      <li>Google Cloud Facilitator Program — Highest Milestone</li>
+                      <li>Google Networking · Industrial IoT on GCP · Stanford Machine Learning</li>
+                      <li>IBM Data Science · Coursera Android &amp; Cybersecurity · Udemy Frontend &amp; Python · MATLAB Onramp</li>
+                    </ul>
                   </div>
                 </article>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Terminal window -->
+        <section id="terminal-window" class="window window-terminal" data-window>
+          <header class="window-header terminal-header" data-drag-handle data-drag-target="terminal-window">
+            <div class="window-controls">
+              <button class="btn-close" data-term-close aria-label="Close"></button>
+              <button class="btn-minimize" data-term-minimize aria-label="Minimize"></button>
+              <button class="btn-full" data-term-maximize aria-label="Maximize"></button>
+            </div>
+            <div class="finder-toolbar">
+              <div class="finder-title">avinash — zsh — 80×24</div>
+            </div>
+          </header>
+          <div class="terminal-body" id="terminal-body">
+            <div class="terminal-output" id="terminal-output"></div>
+            <div class="terminal-input-line">
+              <span class="terminal-prompt" id="terminal-prompt">avinash@portfolio ~ %</span>
+              <input id="terminal-input" class="terminal-input" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal input" />
             </div>
           </div>
         </section>
@@ -292,15 +510,28 @@
             <span class="dock-icon-symbol dock-icon-symbol--projects"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg></span>
             <span class="dock-label">Projects</span>
           </button>
+          <button class="dock-icon" data-dock-tab="skills">
+            <span class="dock-icon-symbol dock-icon-symbol--skills"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg></span>
+            <span class="dock-label">Skills</span>
+          </button>
           <button class="dock-icon" data-dock-tab="education">
             <span class="dock-icon-symbol dock-icon-symbol--education"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg></span>
             <span class="dock-label">Education</span>
+          </button>
+          <div class="dock-separator" aria-hidden="true"></div>
+          <button class="dock-icon" id="dock-launchpad" type="button" title="Launchpad (F4)">
+            <span class="dock-icon-symbol dock-icon-symbol--launchpad"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><circle cx="6" cy="6" r="2.2"/><circle cx="12" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="6" cy="12" r="2.2"/><circle cx="12" cy="12" r="2.2"/><circle cx="18" cy="12" r="2.2"/><circle cx="6" cy="18" r="2.2"/><circle cx="12" cy="18" r="2.2"/><circle cx="18" cy="18" r="2.2"/></svg></span>
+            <span class="dock-label">Launchpad</span>
+          </button>
+          <button class="dock-icon" id="dock-terminal" type="button">
+            <span class="dock-icon-symbol dock-icon-symbol--terminal"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span>
+            <span class="dock-label">Terminal</span>
           </button>
           <a class="dock-icon" href="https://github.com/avinashroffl" target="_blank" rel="noreferrer">
             <span class="dock-icon-symbol dock-icon-symbol--github"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
             <span class="dock-label">GitHub</span>
           </a>
-          <a class="dock-icon" href="https://in.linkedin.com/in/avinashrofficial" target="_blank" rel="noreferrer">
+          <a class="dock-icon" href="https://www.linkedin.com/in/avinashrofficial/" target="_blank" rel="noreferrer">
             <span class="dock-icon-symbol dock-icon-symbol--linkedin"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
             <span class="dock-label">LinkedIn</span>
           </a>
@@ -308,7 +539,141 @@
       </footer>
     </div>
 
+    <!-- ===== iPhone experience (shown on small screens) ===== -->
+    <div id="ios-shell" class="ios-shell" aria-label="iPhone portfolio">
+      <!-- Home sits under lock; zooms from blurred/scaled on unlock -->
+      <div id="ios-home" class="ios-home ios-home--locked">
+        <div class="ios-status">
+          <span class="ios-status-time" data-ios-clock>9:41</span>
+          <div class="ios-dynamic-island" aria-hidden="true"></div>
+          <div class="ios-status-right">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" aria-hidden="true"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h1A1.5 1.5 0 0 1 5 3.5v5A1.5 1.5 0 0 1 3.5 10h-1A1.5 1.5 0 0 1 1 8.5v-5zm4.5 1A1.5 1.5 0 0 1 7 3h1a1.5 1.5 0 0 1 1.5 1.5v4A1.5 1.5 0 0 1 8 10H7a1.5 1.5 0 0 1-1.5-1.5v-4zm4.5-.5A1.5 1.5 0 0 1 11.5 2.5h1A1.5 1.5 0 0 1 14 4v4.5A1.5 1.5 0 0 1 12.5 10h-1A1.5 1.5 0 0 1 10 8.5V4z"/></svg>
+            <svg width="24" height="12" viewBox="0 0 28 13" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="22" height="12" rx="3.5" stroke="currentColor"/><rect x="2" y="2" width="16" height="9" rx="2" fill="currentColor"/><path d="M24 4.5v4a2 2 0 0 0 0-4z" fill="currentColor" opacity=".4"/></svg>
+          </div>
+        </div>
+
+        <div class="ios-home-content">
+          <div class="ios-greeting" data-ios-spring style="--spring-i:0">
+            <img src="./profile.jpeg" alt="" class="ios-greeting-avatar" />
+            <div>
+              <p class="ios-greeting-hello">Hi, I’m</p>
+              <h1 class="ios-greeting-name">Avinash R</h1>
+              <p class="ios-greeting-role">MTS @ Zoho · Backend</p>
+            </div>
+          </div>
+
+          <div class="ios-app-grid">
+            <button type="button" class="ios-app-icon" data-ios-app="about" data-ios-spring style="--spring-i:1">
+              <span class="ios-app-glyph ios-app-glyph--about"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></span>
+              <span class="ios-app-name">About</span>
+            </button>
+            <button type="button" class="ios-app-icon" data-ios-app="experience" data-ios-spring style="--spring-i:2">
+              <span class="ios-app-glyph ios-app-glyph--experience"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+              <span class="ios-app-name">Work</span>
+            </button>
+            <button type="button" class="ios-app-icon" data-ios-app="projects" data-ios-spring style="--spring-i:3">
+              <span class="ios-app-glyph ios-app-glyph--projects"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg></span>
+              <span class="ios-app-name">Projects</span>
+            </button>
+            <button type="button" class="ios-app-icon" data-ios-app="skills" data-ios-spring style="--spring-i:4">
+              <span class="ios-app-glyph ios-app-glyph--skills"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg></span>
+              <span class="ios-app-name">Skills</span>
+            </button>
+            <button type="button" class="ios-app-icon" data-ios-app="education" data-ios-spring style="--spring-i:5">
+              <span class="ios-app-glyph ios-app-glyph--education"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg></span>
+              <span class="ios-app-name">Education</span>
+            </button>
+            <a class="ios-app-icon" href="https://github.com/avinashroffl" target="_blank" rel="noreferrer" data-ios-spring style="--spring-i:6">
+              <span class="ios-app-glyph ios-app-glyph--github"><svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+              <span class="ios-app-name">GitHub</span>
+            </a>
+            <a class="ios-app-icon" href="https://www.linkedin.com/in/avinashrofficial/" target="_blank" rel="noreferrer" data-ios-spring style="--spring-i:7">
+              <span class="ios-app-glyph ios-app-glyph--linkedin"><svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+              <span class="ios-app-name">LinkedIn</span>
+            </a>
+            <a class="ios-app-icon" href="mailto:avinashroffl@gmail.com" data-ios-spring style="--spring-i:8">
+              <span class="ios-app-glyph ios-app-glyph--mail"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+              <span class="ios-app-name">Mail</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="ios-dock" data-ios-spring style="--spring-i:9">
+          <button type="button" class="ios-dock-icon" data-ios-app="about" aria-label="About">
+            <span class="ios-app-glyph ios-app-glyph--about"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></span>
+          </button>
+          <button type="button" class="ios-dock-icon" data-ios-app="experience" aria-label="Work">
+            <span class="ios-app-glyph ios-app-glyph--experience"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+          </button>
+          <button type="button" class="ios-dock-icon" data-ios-app="projects" aria-label="Projects">
+            <span class="ios-app-glyph ios-app-glyph--projects"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg></span>
+          </button>
+          <a class="ios-dock-icon" href="mailto:avinashroffl@gmail.com" aria-label="Mail">
+            <span class="ios-app-glyph ios-app-glyph--mail"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+          </a>
+        </div>
+        <div class="ios-home-bar" aria-hidden="true"></div>
+      </div>
+
+      <!-- Lock overlays home -->
+      <div id="ios-lock" class="ios-lock">
+        <div class="ios-status ios-status--lock">
+          <span class="ios-status-time" data-ios-clock>9:41</span>
+          <div class="ios-status-right">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" aria-hidden="true"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h1A1.5 1.5 0 0 1 5 3.5v5A1.5 1.5 0 0 1 3.5 10h-1A1.5 1.5 0 0 1 1 8.5v-5zm4.5 1A1.5 1.5 0 0 1 7 3h1a1.5 1.5 0 0 1 1.5 1.5v4A1.5 1.5 0 0 1 8 10H7a1.5 1.5 0 0 1-1.5-1.5v-4zm4.5-.5A1.5 1.5 0 0 1 11.5 2.5h1A1.5 1.5 0 0 1 14 4v4.5A1.5 1.5 0 0 1 12.5 10h-1A1.5 1.5 0 0 1 10 8.5V4z"/></svg>
+            <svg width="24" height="12" viewBox="0 0 28 13" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="22" height="12" rx="3.5" stroke="currentColor"/><rect x="2" y="2" width="16" height="9" rx="2" fill="currentColor"/><path d="M24 4.5v4a2 2 0 0 0 0-4z" fill="currentColor" opacity=".4"/></svg>
+          </div>
+        </div>
+        <div class="ios-lock-center">
+          <div class="ios-lock-date" id="ios-lock-date"></div>
+          <div class="ios-lock-time" id="ios-lock-time">9:41</div>
+        </div>
+        <div class="ios-lock-bottom">
+          <img class="ios-lock-avatar" src="./profile.jpeg" alt="" />
+          <div class="ios-lock-name">Avinash R</div>
+          <div class="ios-lock-hint">Swipe up or tap to unlock</div>
+          <div class="ios-home-bar" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div id="ios-app" class="ios-app" hidden>
+        <div class="ios-status ios-status--solid">
+          <span class="ios-status-time" data-ios-clock>9:41</span>
+          <div class="ios-dynamic-island" aria-hidden="true"></div>
+          <div class="ios-status-right">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" aria-hidden="true"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h1A1.5 1.5 0 0 1 5 3.5v5A1.5 1.5 0 0 1 3.5 10h-1A1.5 1.5 0 0 1 1 8.5v-5zm4.5 1A1.5 1.5 0 0 1 7 3h1a1.5 1.5 0 0 1 1.5 1.5v4A1.5 1.5 0 0 1 8 10H7a1.5 1.5 0 0 1-1.5-1.5v-4zm4.5-.5A1.5 1.5 0 0 1 11.5 2.5h1A1.5 1.5 0 0 1 14 4v4.5A1.5 1.5 0 0 1 12.5 10h-1A1.5 1.5 0 0 1 10 8.5V4z"/></svg>
+            <svg width="24" height="12" viewBox="0 0 28 13" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="22" height="12" rx="3.5" stroke="currentColor"/><rect x="2" y="2" width="16" height="9" rx="2" fill="currentColor"/><path d="M24 4.5v4a2 2 0 0 0 0-4z" fill="currentColor" opacity=".4"/></svg>
+          </div>
+        </div>
+        <header class="ios-nav">
+          <button type="button" class="ios-nav-back" id="ios-nav-back" aria-label="Back to Home">
+            <svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2 10l8 8"/></svg>
+            Home
+          </button>
+          <h1 class="ios-nav-title" id="ios-nav-title">About</h1>
+          <span class="ios-nav-spacer"></span>
+        </header>
+        <div class="ios-app-scroll" id="ios-app-scroll"></div>
+        <div class="ios-home-bar ios-home-bar--dark" id="ios-app-home-bar" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- macOS Launchpad -->
+    <div id="launchpad" class="launchpad macos-only" hidden>
+      <div class="launchpad-backdrop" id="launchpad-backdrop"></div>
+      <div class="launchpad-grid">
+        <button type="button" class="launchpad-item" data-launch="about"><span class="dock-icon-symbol dock-icon-symbol--about"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></span><span>About</span></button>
+        <button type="button" class="launchpad-item" data-launch="experience"><span class="dock-icon-symbol dock-icon-symbol--experience"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span><span>Experience</span></button>
+        <button type="button" class="launchpad-item" data-launch="projects"><span class="dock-icon-symbol dock-icon-symbol--projects"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg></span><span>Projects</span></button>
+        <button type="button" class="launchpad-item" data-launch="skills"><span class="dock-icon-symbol dock-icon-symbol--skills"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></span><span>Skills</span></button>
+        <button type="button" class="launchpad-item" data-launch="education"><span class="dock-icon-symbol dock-icon-symbol--education"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg></span><span>Education</span></button>
+        <button type="button" class="launchpad-item" data-launch="terminal"><span class="dock-icon-symbol dock-icon-symbol--terminal"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.6"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span><span>Terminal</span></button>
+        <a class="launchpad-item" href="https://github.com/avinashroffl" target="_blank" rel="noreferrer"><span class="dock-icon-symbol dock-icon-symbol--github"><svg width="36" height="36" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></span><span>GitHub</span></a>
+        <a class="launchpad-item" href="https://www.linkedin.com/in/avinashrofficial/" target="_blank" rel="noreferrer"><span class="dock-icon-symbol dock-icon-symbol--linkedin"><svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span><span>LinkedIn</span></a>
+      </div>
+      <p class="launchpad-hint">Click outside or Esc to close · F4 / ⌘L to toggle</p>
+    </div>
+
     <script src="./script.js"></script>
   </body>
 </html>
-
