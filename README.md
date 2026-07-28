@@ -7,23 +7,23 @@ Two surfaces share this repo:
 | Path | What it is |
 |---|---|
 | [`/`](https://avinashroffl.github.io/) | Interactive portfolio (macOS desktop + iPhone shell) |
-| [`/professional/`](https://avinashroffl.github.io/professional/) | Single-page professional resume |
+| [`/professional/`](https://avinashroffl.github.io/professional/) | Recruiter-focused backend resume page |
 
 ---
 
 ## Live links
 
 * **Portfolio:** [avinashroffl.github.io](https://avinashroffl.github.io)
-* **Professional resume:** [avinashroffl.github.io/professional](https://avinashroffl.github.io/professional)
+* **Professional page:** [avinashroffl.github.io/professional](https://avinashroffl.github.io/professional)
 * **GitHub repo:** [Avinashroffl/Avinashroffl.github.io](https://github.com/Avinashroffl/Avinashroffl.github.io)
 
 ---
 
 ## About the author
 
-**Avinash R** — Member Technical Staff @ Zoho · Backend Developer (Java & Spring Boot)
+**Avinash R** — Member Technical Staff @ Zoho · Backend Engineer (Java · Spring Boot · MySQL)
 
-* 3+ years building high-performance REST APIs, distributed systems, and event-driven backends for enterprise SaaS
+* Ships production SaaS backends with measurable impact (storage, latency, reliability)
 * B.Tech Information Technology — Thiagarajar College of Engineering (Best Outgoing Student, 2019–23)
 * Based in Chennai / Greater Madurai
 
@@ -74,18 +74,17 @@ A dual-shell experience that switches by viewport:
 
 ---
 
-## 2. Professional resume (`/professional/`)
+## 2. Professional page (`/professional/`)
 
-A focused, recruiter-friendly single page — midnight teal theme, mobile-responsive, print-friendly styles retained in CSS.
+Recruiter-focused single page — midnight teal theme, mobile-responsive, honest skills tied to real Zoho work.
 
 ### Highlights
 
-* Sticky nav with scroll spy and mobile hamburger menu
-* Hero with contact CTAs (email, LinkedIn, GitHub)
-* Impact metrics, experience, skills (incl. Generative AI / Copilot), projects, education
-* Interactive CSS on fine pointers: custom cursor, magnetic buttons, tilt/spotlight tiles, ambient mouse-follow gradient
-* Scroll progress bar, tech marquee, scroll-reveal animations
-* Respects `prefers-reduced-motion` and touch devices (interactions toned down)
+* Sticky nav with scroll spy and mobile menu
+* Impact metrics from production work (storage, latency, SSL enablement, tickets)
+* Core skills only: Java, Spring Boot, MySQL, Redis, Kafka, Docker, system design
+* Motion system on desktop: boot veil, kinetic name, aurora, cursor trail, experience rail, beam borders, inertia scroll
+* Respects `prefers-reduced-motion` and touch devices
 
 ### Hire / contact
 
@@ -95,10 +94,8 @@ A focused, recruiter-friendly single page — midnight teal theme, mobile-respon
 
 ## Content overview
 
-Aligned with professional experience (not a full dump of every product detail):
-
 * **Zoho** — version-retention settings at multi-DC scale, large-file APIs, SSL/domain enablement, storage monitoring, production support
-* **Skills** — Java, Spring Boot, Kafka, Redis, MySQL, GCP, Docker, system design, Generative AI (GitHub Copilot, Cursor)
+* **Skills** — Java, Spring Boot, Spring Data JPA, REST, MySQL, Redis, Kafka, Docker, Maven, Git, JUnit; Copilot/Cursor as tooling
 * **Projects** — Full-stack e-commerce (Spring Boot + Vue), this interactive portfolio, Madurai COVID tracker
 * **Education** — B.Tech IT @ TCE · Best Outgoing Student 2019–23
 
@@ -120,9 +117,12 @@ Aligned with professional experience (not a full dump of every product detail):
 ├── styles.css
 ├── script.js
 ├── profile.jpeg         # Shared profile photo
+├── favicon.png          # Tab icons (from profile photo)
+├── favicon-32.png
+├── apple-touch-icon.png
 ├── background.png       # Desktop / lock wallpaper
 ├── professional/
-│   ├── index.html       # Professional resume page
+│   ├── index.html       # Recruiter-focused backend page
 │   ├── styles.css
 │   └── script.js
 └── README.md

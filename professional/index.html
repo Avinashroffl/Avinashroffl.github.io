@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Avinash R · Professional Resume</title>
+    <title>Avinash R · Backend Engineer</title>
     <meta
       name="description"
-      content="Professional resume of Avinash R — Member Technical Staff at Zoho, Backend Developer specializing in Java, Spring Boot, and scalable SaaS systems."
+      content="Avinash R — Member Technical Staff at Zoho. Backend engineer (Java, Spring Boot, MySQL, Redis, Kafka) shipping scalable SaaS systems with measurable production impact."
     />
     <meta name="theme-color" content="#071018" />
     <link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32" />
@@ -20,11 +20,17 @@
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
+  <body class="is-booting">
+    <div class="boot-veil" id="boot-veil" aria-hidden="true"></div>
     <div class="progress" id="scroll-progress" aria-hidden="true"></div>
     <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
     <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
-    <div class="atmosphere" aria-hidden="true"></div>
+    <div class="cursor-trail" id="cursor-trail" aria-hidden="true"></div>
+    <div class="atmosphere" aria-hidden="true">
+      <span class="aurora aurora-a"></span>
+      <span class="aurora aurora-b"></span>
+      <span class="aurora aurora-c"></span>
+    </div>
     <div class="noise" aria-hidden="true"></div>
     <div class="grid-overlay" aria-hidden="true"></div>
 
@@ -41,7 +47,7 @@
         <a href="#contact" data-nav="contact" class="nav-contact">Contact</a>
       </nav>
       <div class="topbar-actions">
-        <a class="btn-primary magnetic" href="mailto:avinashroffl@gmail.com?subject=Opportunity%20with%20Avinash%20R">Hire me</a>
+        <a class="btn-primary magnetic ripple-btn" href="mailto:avinashroffl@gmail.com?subject=Opportunity%20with%20Avinash%20R">Hire me</a>
         <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="topnav" aria-label="Open menu">
           <span></span><span></span>
         </button>
@@ -53,34 +59,40 @@
         <div class="hero-copy">
           <p class="eyebrow reveal">
             <span class="eyebrow-pulse" aria-hidden="true"></span>
-            Professional resume · Backend engineering
+            Backend engineering
           </p>
-          <h1 class="hero-name reveal">
-            Avinash<span class="hero-name-accent"> R</span>
+          <h1 class="hero-name reveal" id="hero-name" data-text="Avinash R" aria-label="Avinash R">
+            <span class="hero-name-inner">Avinash<span class="hero-name-accent"> R</span></span>
           </h1>
           <p class="hero-role reveal">
             Member Technical Staff @ Zoho<br />
-            Backend Developer — Java &amp; Spring Boot
+            Backend Engineer — Java · Spring Boot · MySQL
           </p>
           <p class="hero-lede reveal">
-            3+ years designing high-performance REST APIs, distributed systems, and
-            event-driven backends for enterprise SaaS — from architecture through
-            production ownership.
+            I design and own production backend systems for enterprise SaaS.
+            At Zoho, my work reclaims <strong>100+ TB of storage daily</strong>, cuts critical
+            API latency by <strong>95%</strong>, and keeps high-traffic file workflows reliable
+            for customers worldwide.
           </p>
           <div class="hero-meta reveal">
             <span>Chennai / Greater Madurai</span>
             <span>Best Outgoing Student · TCE IT ’23</span>
-            <span>Open to opportunities</span>
+            <span>Available for backend roles</span>
           </div>
           <div class="hero-cta reveal">
-            <a class="btn-primary magnetic" href="mailto:avinashroffl@gmail.com">avinashroffl@gmail.com</a>
+            <a class="btn-primary magnetic ripple-btn" href="mailto:avinashroffl@gmail.com">avinashroffl@gmail.com</a>
             <a class="btn-secondary magnetic" href="https://www.linkedin.com/in/avinashrofficial/" target="_blank" rel="noreferrer">LinkedIn</a>
             <a class="btn-secondary magnetic" href="https://github.com/avinashroffl" target="_blank" rel="noreferrer">GitHub</a>
           </div>
         </div>
         <aside class="hero-aside reveal">
           <div class="portrait-wrap">
-            <div class="portrait-ring" aria-hidden="true"></div>
+            <div class="portrait-ring" aria-hidden="true">
+              <span class="orbit-node" style="--i: 0"></span>
+              <span class="orbit-node" style="--i: 1"></span>
+              <span class="orbit-node" style="--i: 2"></span>
+              <span class="orbit-node" style="--i: 3"></span>
+            </div>
             <div class="portrait-frame" id="portrait">
               <img src="../profile.jpeg" alt="Portrait of Avinash R" width="200" height="200" />
               <div class="portrait-shine" aria-hidden="true"></div>
@@ -88,16 +100,16 @@
           </div>
           <dl class="signal-list">
             <div>
-              <dt>Focus</dt>
-              <dd>Scalable backend · SaaS</dd>
+              <dt>Role</dt>
+              <dd>Backend · production owner</dd>
             </div>
             <div>
               <dt>Stack</dt>
-              <dd>Java · Spring · Kafka · Redis</dd>
+              <dd>Java · Spring Boot · MySQL</dd>
             </div>
             <div>
-              <dt>Education</dt>
-              <dd>B.Tech IT · TCE</dd>
+              <dt>Also</dt>
+              <dd>Redis · Kafka · Docker</dd>
             </div>
           </dl>
         </aside>
@@ -105,119 +117,115 @@
 
       <div class="marquee reveal" aria-hidden="true">
         <div class="marquee-track">
-          <span>Java</span><span>Spring Boot</span><span>Kafka</span><span>Redis</span><span>MySQL</span><span>System Design</span><span>Generative AI</span><span>GitHub Copilot</span><span>GCP</span><span>Docker</span>
-          <span>Java</span><span>Spring Boot</span><span>Kafka</span><span>Redis</span><span>MySQL</span><span>System Design</span><span>Generative AI</span><span>GitHub Copilot</span><span>GCP</span><span>Docker</span>
+          <span>Java</span><span>Spring Boot</span><span>REST APIs</span><span>MySQL</span><span>Redis</span><span>Apache Kafka</span><span>Docker</span><span>System Design</span><span>JUnit</span><span>Git</span>
+          <span>Java</span><span>Spring Boot</span><span>REST APIs</span><span>MySQL</span><span>Redis</span><span>Apache Kafka</span><span>Docker</span><span>System Design</span><span>JUnit</span><span>Git</span>
         </div>
       </div>
 
       <section class="impact reveal" aria-label="Impact highlights">
         <div class="impact-item interactive-tile" data-tilt>
           <strong data-count="100" data-suffix="+ TB">0+ TB</strong>
-          <span>storage optimized daily at scale</span>
+          <span>storage reclaimed every day in production</span>
         </div>
         <div class="impact-item interactive-tile" data-tilt>
           <strong data-count="95" data-suffix="%">0%</strong>
-          <span>faster critical API responses</span>
+          <span>faster large-file API responses</span>
         </div>
         <div class="impact-item interactive-tile" data-tilt>
           <strong>&lt;4 hrs</strong>
-          <span>from 3-day SSL / domain enablement</span>
+          <span>SSL / custom-domain enablement (was 3 days)</span>
         </div>
         <div class="impact-item interactive-tile" data-tilt>
           <strong data-count="1000" data-suffix="+">0+</strong>
-          <span>production issues resolved</span>
+          <span>production issues owned end-to-end</span>
         </div>
       </section>
 
       <section class="section" id="experience">
         <div class="section-head reveal">
           <p class="section-index">01</p>
-          <h2>Experience</h2>
-          <p class="section-lede">Ownership across backend platforms, product settings, and mentoring.</p>
+          <h2 class="mask-title">Experience</h2>
+          <p class="section-lede">What I’ve shipped in production — and the numbers behind it.</p>
         </div>
 
-        <article class="role reveal">
-          <header class="role-head">
-            <div>
-              <h3>Member Technical Staff</h3>
-              <p class="role-org">Zoho Corporation</p>
-            </div>
-            <p class="role-meta">Jun 2023 – Present · Madurai · Java, REST, MySQL</p>
-          </header>
-          <ul>
-            <li>Designed version-retention settings across <strong>8+ global data centers</strong>, reclaiming <strong>100+ TB of storage daily</strong> for high-volume sync customers.</li>
-            <li>Built large-file management APIs that cut backend response time by <strong>95%</strong>, enabling instant tracking and cleanup of heavy assets.</li>
-            <li>Automated SSL purchase and domain verification, shrinking enablement from <strong>3 days to under 4 hours</strong>.</li>
-            <li>Shipped storage monitoring and threshold alerts for proactive capacity planning; rebuilt admin surfaces for clearer operations.</li>
-            <li>Resolved <strong>1,000+</strong> support tickets on uploads, downloads, and custom domains; mentored juniors and raised review standards.</li>
-          </ul>
-        </article>
+        <div class="experience-rail" id="experience-rail" style="--rail: 0">
+          <div class="experience-rail-track" aria-hidden="true">
+            <div class="experience-rail-fill"></div>
+          </div>
+          <div class="experience-rail-body">
+            <article class="role reveal">
+              <header class="role-head">
+                <div>
+                  <h3>Member Technical Staff</h3>
+                  <p class="role-org">Zoho Corporation</p>
+                </div>
+                <p class="role-meta">Jun 2023 – Present · Madurai · Java · Spring · MySQL</p>
+              </header>
+              <ul>
+                <li>Built <strong>version-retention settings</strong> across <strong>8+ global data centers</strong>, reclaiming <strong>100+ TB of storage daily</strong> for high-volume sync customers.</li>
+                <li>Owned large-file management APIs that cut backend response time by <strong>95%</strong>, so heavy assets can be tracked and cleaned up instantly.</li>
+                <li>Automated SSL purchase and domain verification — enablement dropped from <strong>3 days to under 4 hours</strong>.</li>
+                <li>Shipped storage monitoring with threshold alerts for capacity planning, and rebuilt admin surfaces operators actually use.</li>
+                <li>Closed <strong>1,000+</strong> production issues on uploads, downloads, and custom domains; mentored juniors and raised review quality.</li>
+              </ul>
+            </article>
 
-        <article class="role reveal">
-          <header class="role-head">
-            <div>
-              <h3>Project Trainee — Backend</h3>
-              <p class="role-org">Zoho Corporation</p>
-            </div>
-            <p class="role-meta">Jan 2023 – May 2023 · Java, APIs, performance</p>
-          </header>
-          <ul>
-            <li>Delivered bulk version deletion with selective retention for milestone versions.</li>
-            <li>Built restore-deleted-versions recovery for one-click data resilience.</li>
-            <li>Contributed to core backend work, SQL optimization, debugging, and API documentation.</li>
-          </ul>
-        </article>
+            <article class="role reveal">
+              <header class="role-head">
+                <div>
+                  <h3>Project Trainee — Backend</h3>
+                  <p class="role-org">Zoho Corporation</p>
+                </div>
+                <p class="role-meta">Jan 2023 – May 2023 · Java · REST APIs · SQL</p>
+              </header>
+              <ul>
+                <li>Delivered bulk version deletion with selective retention for milestone versions.</li>
+                <li>Built restore-deleted-versions so users recover data in one click.</li>
+                <li>Contributed to core backend work: SQL tuning, debugging, and clear API documentation.</li>
+              </ul>
+            </article>
 
-        <article class="role reveal">
-          <header class="role-head">
-            <div>
-              <h3>Campus leadership &amp; ambassador roles</h3>
-              <p class="role-org">IITs, IIMs, ACM, Techfest &amp; more</p>
-            </div>
-            <p class="role-meta">2020 – 2021</p>
-          </header>
-          <p>
-            Campus Ambassador / Representative for E-Cell IIT Madras, ELAN &amp; ηvision
-            (IIT Hyderabad), Techfest IIT Bombay, ACM IIT (ISM) Dhanbad, IEEE IIIT-Delhi,
-            EXIMIUS IIM Bangalore, E-Cell IIT Kanpur, and International MUN.
-          </p>
-        </article>
+            <article class="role reveal">
+              <header class="role-head">
+                <div>
+                  <h3>Campus leadership</h3>
+                  <p class="role-org">IIT / IIM / ACM ambassador programs</p>
+                </div>
+                <p class="role-meta">2020 – 2021</p>
+              </header>
+              <p>
+                Represented programs across IIT Madras, IIT Hyderabad, IIT Bombay, IIM Bangalore,
+                and others — communication, ownership, and community building outside the IDE.
+              </p>
+            </article>
+          </div>
+        </div>
       </section>
 
       <section class="section" id="skills">
         <div class="section-head reveal">
           <p class="section-index">02</p>
-          <h2>Skills</h2>
-          <p class="section-lede">Tools and practices used to ship reliable backend systems.</p>
+          <h2 class="mask-title">Skills</h2>
+          <p class="section-lede">What I use day-to-day to ship and support backend systems — not a keyword dump.</p>
         </div>
-        <div class="skills-board">
-          <div class="skill-block interactive-tile" data-tilt>
-            <h3>Languages</h3>
-            <p>Java · Python</p>
+        <div class="skills-board skills-board--tight">
+          <div class="skill-block interactive-tile skill-block--accent beam-border" data-tilt>
+            <div class="beam-border-inner">
+              <h3>Core backend</h3>
+              <p>Java · Spring Boot · Spring Data JPA · REST API design · MySQL · Redis · Apache Kafka</p>
+            </div>
           </div>
           <div class="skill-block interactive-tile" data-tilt>
-            <h3>Frameworks</h3>
-            <p>Spring Boot · Spring Data JPA · Servlets · JSP · JDBC · Katharsis · Swagger · Protocol Buffers</p>
+            <h3>Also productive with</h3>
+            <p>Servlets · JSP · JDBC · Swagger · Docker · Maven · Git · JUnit · Postman · GCP</p>
           </div>
           <div class="skill-block interactive-tile" data-tilt>
-            <h3>Data &amp; messaging</h3>
-            <p>MySQL · Redis · Apache Kafka</p>
-          </div>
-          <div class="skill-block interactive-tile" data-tilt>
-            <h3>Cloud &amp; DevOps</h3>
-            <p>Google Cloud Platform · Docker · Maven · Git</p>
-          </div>
-          <div class="skill-block interactive-tile" data-tilt>
-            <h3>Architecture</h3>
-            <p>System Design (HLD / LLD) · REST API Design · OOP · Layered Architecture · SDLC · Code Reviews</p>
-          </div>
-          <div class="skill-block interactive-tile skill-block--accent" data-tilt>
-            <h3>Generative AI</h3>
-            <p>GitHub Copilot · Cursor · Prompt engineering · AI-assisted development &amp; code review</p>
+            <h3>How I build</h3>
+            <p>System design (HLD / LLD) · OOP · Layered architecture · Code reviews · Production debugging</p>
           </div>
           <div class="skill-block interactive-tile" data-tilt>
             <h3>Tooling</h3>
-            <p>JUnit · Postman · IntelliJ IDEA · VS Code · GitHub</p>
+            <p>IntelliJ IDEA · GitHub · GitHub Copilot · Cursor · VS Code · Python (secondary)</p>
           </div>
         </div>
       </section>
@@ -225,8 +233,8 @@
       <section class="section" id="projects">
         <div class="section-head reveal">
           <p class="section-index">03</p>
-          <h2>Projects</h2>
-          <p class="section-lede">Selected builds that show full-stack range and product sense.</p>
+          <h2 class="mask-title">Projects</h2>
+          <p class="section-lede">Proof I can take a product from idea to something users depend on.</p>
         </div>
 
         <div class="project-list">
@@ -234,10 +242,10 @@
             <div class="project-index">P01</div>
             <div class="project-body">
               <h3>Full-Stack E-Commerce Platform</h3>
-              <p class="project-stack">Java · Spring Boot · Vue.js · Docker · Cloud Hosting</p>
+              <p class="project-stack">Java · Spring Boot · Vue.js · Docker</p>
               <p>
-                Scalable Admin and Customer portals with auth, cart, checkout, order history,
-                ratings, inventory, and live stock visibility — containerized and cloud-hosted.
+                Admin + customer portals with auth, cart, checkout, orders, ratings, and inventory —
+                containerized and cloud-hosted. Shows I can own backend APIs and still ship the UI.
               </p>
             </div>
             <a class="project-link" href="https://youtube.com/watch?v=qt3w1hJhvSU" target="_blank" rel="noreferrer">Demo →</a>
@@ -247,10 +255,10 @@
             <div class="project-index">P02</div>
             <div class="project-body">
               <h3>Interactive Portfolio (macOS / iPhone)</h3>
-              <p class="project-stack">HTML · CSS · Vanilla JavaScript</p>
+              <p class="project-stack">HTML · CSS · JavaScript</p>
               <p>
-                Dual-shell personal site with Finder desktop, Terminal, Spotlight, Launchpad,
-                and an iPhone home experience — static on GitHub Pages.
+                Dual-shell personal site with desktop and mobile experiences — attention to detail,
+                polish, and shipping without a framework.
               </p>
             </div>
             <a class="project-link" href="../">Visit →</a>
@@ -262,8 +270,8 @@
               <h3>Madurai District Corona Counter</h3>
               <p class="project-stack">HTML · CSS · JS · Chart.js · PHP</p>
               <p>
-                Real-time COVID-19 district tracker during lockdown using an open API with
-                live charts and statistics.
+                Real-time district COVID tracker during lockdown — open API, live charts, built
+                under real urgency.
               </p>
             </div>
             <a class="project-link" href="https://coronatrackermadurai.000webhostapp.com/" target="_blank" rel="noreferrer">Live →</a>
@@ -274,8 +282,8 @@
       <section class="section" id="education">
         <div class="section-head reveal">
           <p class="section-index">04</p>
-          <h2>Education &amp; credentials</h2>
-          <p class="section-lede">Academics, leadership, and continuous learning.</p>
+          <h2 class="mask-title">Education &amp; credentials</h2>
+          <p class="section-lede">Strong fundamentals — and proof I finish what I start.</p>
         </div>
 
         <article class="role reveal">
@@ -287,9 +295,9 @@
             <p class="role-meta">Jun 2019 – May 2023 · Madurai</p>
           </header>
           <ul>
-            <li>Awarded <strong>Best Outgoing Student (2019–2023)</strong> for academics, leadership, technical contributions, and community service.</li>
-            <li>Department General Secretary and Placement Coordinator — mentored juniors and organized campus tech fests.</li>
-            <li>Published papers, presented at international conferences (incl. NIT Patna), and reached finals at IIT/NIT events.</li>
+            <li><strong>Best Outgoing Student (2019–2023)</strong> — academics, leadership, and technical contribution.</li>
+            <li>Department General Secretary &amp; Placement Coordinator — mentored juniors, ran campus tech events.</li>
+            <li>Published papers and presented at conferences (incl. NIT Patna); reached finals at IIT/NIT events.</li>
           </ul>
         </article>
 
@@ -307,32 +315,32 @@
         </div>
 
         <div class="certs reveal">
-          <h3>Certifications</h3>
+          <h3>Relevant certifications</h3>
           <p>
-            Spring Boot (Udemy) · SQL 50 · HackerRank REST API (Java) · Google Cloud Facilitator
-            (Highest Milestone) · Google Networking · Industrial IoT on GCP · Stanford Machine
-            Learning · IBM Data Science · Coursera Android &amp; Cybersecurity · Udemy Frontend
-            &amp; Python · MATLAB Onramp
+            Spring Boot (Udemy) · HackerRank REST API (Java) · SQL 50 · Google Cloud Facilitator
+            (Highest Milestone)
           </p>
         </div>
       </section>
 
-      <section class="closeout reveal" id="contact">
-        <p class="eyebrow">Next conversation</p>
-        <h2>Let’s build something that scales.</h2>
-        <p>
-          Open to roles where backend ownership, system design, and product impact matter.
-        </p>
-        <div class="hero-cta">
-          <a class="btn-primary magnetic" href="mailto:avinashroffl@gmail.com?subject=Hello%20Avinash">Email Avinash</a>
-          <a class="btn-secondary magnetic" href="https://www.linkedin.com/in/avinashrofficial/" target="_blank" rel="noreferrer">LinkedIn</a>
+      <section class="closeout reveal beam-border" id="contact">
+        <div class="beam-border-inner closeout-inner">
+          <p class="eyebrow">Ready to talk</p>
+          <h2>Hire a backend engineer who already ships at scale.</h2>
+          <p class="closeout-lede">
+            If you need someone who owns Java / Spring services, cares about latency and data,
+            and closes the loop in production — let’s talk.
+          </p>
+          <div class="hero-cta">
+            <a class="btn-primary magnetic ripple-btn" href="mailto:avinashroffl@gmail.com?subject=Opportunity%20for%20Avinash%20R">Email Avinash</a>
+            <a class="btn-secondary magnetic" href="https://www.linkedin.com/in/avinashrofficial/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+          <p class="closeout-footer">
+            © Avinash R · <a href="https://avinashroffl.github.io/professional/">avinashroffl.github.io/professional</a>
+          </p>
         </div>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <p>© Avinash R · <a href="https://avinashroffl.github.io/professional/">avinashroffl.github.io/professional</a></p>
-    </footer>
 
     <script src="./script.js"></script>
   </body>
