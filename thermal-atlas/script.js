@@ -1,6 +1,12 @@
 (() => {
-  const CITIES = window.THERMAL_CITIES || [];
-  const TOP_N = 50;
+  const CONFIG = window.THERMAL_ATLAS_CONFIG || {};
+  const TOP_N = CONFIG.topN || 50;
+  const COUNTRY_FILTER = CONFIG.country || null;
+  const LABEL = CONFIG.label || `top ${TOP_N}`;
+  const ALL_CITIES = window.THERMAL_CITIES || [];
+  const CITIES = COUNTRY_FILTER
+    ? ALL_CITIES.filter((c) => c.country === COUNTRY_FILTER)
+    : ALL_CITIES;
   const BATCH = 50;
   const CONCURRENCY = 4;
   const WEATHER_API = "https://api.open-meteo.com/v1/forecast";
@@ -505,7 +511,14 @@
     activeId = null;
 
     try {
-      if (!CITIES.length) throw new Error("City list missing — cities.js failed to load");
+      if (!ALL_CITIES.length) throw new Error("City list missing — cities.js failed to load");
+      if (!CITIES.length) {
+        throw new Error(
+          COUNTRY_FILTER
+            ? `No cities found for country filter “${COUNTRY_FILTER}” in cities.js`
+            : "City list is empty"
+        );
+      }
 
       const batches = chunk(CITIES, BATCH);
       let done = 0;
@@ -538,8 +551,8 @@
         throw lastBatchErr || new Error("No temperature readings returned from Open-Meteo");
       }
 
-      // AQI only for the top 50 — keeps the 1000-city scan fast
-      setStatus("Loading air quality for the top 50…");
+      // AQI only for the ranked winners
+      setStatus(`Loading air quality for the ${LABEL}…`);
       try {
         const aqiRows = (await mapPool(chunk(ranked, BATCH), CONCURRENCY, fetchAqiBatch)).flat();
         const aqiMap = new Map(aqiRows.map((r) => [r.id, r]));

@@ -3,20 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Top 50 Hottest Cities · Thermal Atlas</title>
+    <title>India Top 25 Hottest Cities · Thermal Atlas</title>
     <meta
       name="description"
-      content="Live top 50 hottest cities from the past 24 hours on an interactive 3D globe — temperature, humidity, wind, precipitation, and AQI via Open-Meteo."
+      content="Live top 25 hottest cities in India from the past 24 hours — temperature, humidity, wind, precipitation, and AQI via Open-Meteo."
     />
     <meta name="theme-color" content="#0d3d42" />
-    <link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="../../favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
     <div class="sky" aria-hidden="true">
@@ -26,26 +26,26 @@
     </div>
 
     <header class="topbar">
-      <a class="topbar__brand" href="./">
+      <a class="topbar__brand" href="../">
         <span class="topbar__mark" aria-hidden="true"></span>
         Thermal Atlas
       </a>
       <nav class="topbar__nav" aria-label="Views">
-        <a class="is-active" href="./" aria-current="page">World</a>
-        <a href="./india/">India</a>
+        <a href="../">World</a>
+        <a class="is-active" href="./" aria-current="page">India</a>
       </nav>
       <button type="button" class="btn btn--ghost btn--sm" id="refresh-btn">Refresh</button>
     </header>
 
     <section class="hero" id="globe" aria-labelledby="hero-title">
       <div class="hero__copy">
-        <p class="eyebrow">Past 24 hours · live Open-Meteo</p>
-        <h1 id="hero-title" class="hero__brand">Thermal Atlas</h1>
+        <p class="eyebrow">India · past 24 hours · live Open-Meteo</p>
+        <h1 id="hero-title" class="hero__brand">India heat</h1>
         <p class="hero__lede">
-          Drag the Earth. Tap a city. Top 50 hottest from a live scan of 1,000 heat-prone cities —
+          Top 25 hottest Indian cities from our sample — including Madurai when it’s in the mix —
           with humidity, wind, rain, and air quality.
         </p>
-        <p class="status" id="status" role="status">Spinning up the globe…</p>
+        <p class="status" id="status" role="status">Scanning India…</p>
 
         <div class="error-banner" id="error-banner" hidden role="alert">
           <div class="error-banner__icon" aria-hidden="true">!</div>
@@ -79,7 +79,7 @@
 
       <div class="globe-panel">
         <div class="globe-stage" id="globe-stage">
-          <div id="globe-viz" class="globe-viz" role="img" aria-label="Interactive 3D world globe"></div>
+          <div id="globe-viz" class="globe-viz" role="img" aria-label="Interactive 3D globe focused on India"></div>
           <div class="globe-hint" id="globe-hint">Drag to explore · scroll to zoom · tap a heat pin</div>
         </div>
       </div>
@@ -88,10 +88,10 @@
     <main>
       <section class="rankings" id="rankings" aria-labelledby="rankings-title">
         <div class="section-head">
-          <h2 id="rankings-title">Hottest fifty</h2>
+          <h2 id="rankings-title">India · hottest 25</h2>
           <p>
             Ranked by max hourly temperature over the last 24 hours
-            <span id="sample-size">(from 1,000 cities)</span>. Select a row to fly the globe there.
+            <span id="sample-size">(India cities in sample)</span>. Select a row to fly the globe there.
           </p>
         </div>
 
@@ -110,19 +110,21 @@
         Data ©
         <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>
         (CC BY 4.0) ·
-        <a href="../">Avinash R</a> ·
-        <a href="../professional/">Professional</a>
+        <a href="../../">Avinash R</a> ·
+        <a href="../../professional/">Professional</a> ·
+        <a href="../">World top 50</a>
       </p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/globe.gl@2.41.4/dist/globe.gl.min.js"></script>
-    <script src="./cities.js"></script>
+    <script src="../cities.js"></script>
     <script>
       window.THERMAL_ATLAS_CONFIG = {
-        topN: 50,
-        label: "top 50",
+        topN: 25,
+        country: "India",
+        label: "India top 25",
       };
     </script>
-    <script src="./script.js"></script>
+    <script src="../script.js"></script>
   </body>
 </html>

@@ -134,24 +134,41 @@ a:hover {
 }
 
 .topbar__nav {
-  display: none;
-  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-right: 0.25rem;
 }
 
 .topbar__nav a {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--ink-soft);
   text-decoration: none;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
 }
 
 .topbar__nav a:hover {
   color: var(--ember);
 }
 
-@media (min-width: 720px) {
-  .topbar__nav {
-    display: flex;
+.topbar__nav a.is-active {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.7);
+  border-color: var(--glass-border);
+}
+
+@media (max-width: 419px) {
+  .topbar__brand {
+    font-size: 0.92rem;
+  }
+
+  .topbar__nav a {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.55rem;
   }
 }
 

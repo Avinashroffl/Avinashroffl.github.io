@@ -1,10 +1,28 @@
-# Thermal Atlas · Top 50 Hottest Cities
+# Thermal Atlas · Hottest Cities
 
 Live site: [avinashroffl.github.io/thermal-atlas](https://avinashroffl.github.io/thermal-atlas/)
+
+| View | URL |
+|---|---|
+| **World · Top 50** | [avinashroffl.github.io/thermal-atlas](https://avinashroffl.github.io/thermal-atlas/) |
+| **India · Top 25** | [avinashroffl.github.io/thermal-atlas/india](https://avinashroffl.github.io/thermal-atlas/india/) |
 
 Old `/top50/` links redirect to `/thermal-atlas/`.
 
 Static HTML / CSS / JS on GitHub Pages. The browser fetches fresh weather on every visit — **no daily manual updates**. Leave it alone until the API or CDN changes.
+
+---
+
+## Views / tabs
+
+Both pages share `cities.js`, `styles.css`, and `script.js`. Config is set per page via `window.THERMAL_ATLAS_CONFIG`:
+
+| Page | Filter | Ranked |
+|---|---|---|
+| `/thermal-atlas/` | All ~1,000 sample cities | Top **50** worldwide |
+| `/thermal-atlas/india/` | `country === "India"` only (~70+ in sample) | Top **25** in India |
+
+The top bar switches between **World** and **India**. Madurai is in the India sample, so it appears on the India tab whenever it ranks in that top 25 (even when it misses the world top 50).
 
 ---
 
@@ -14,12 +32,12 @@ Temperatures (and related metrics) come from [Open-Meteo](https://open-meteo.com
 
 On each visit we:
 
-1. Scan a fixed sample of **1,000** heat-prone / major cities
+1. Scan the relevant city sample (world or India-filtered)
 2. Take each city’s **max hourly temperature** from the past 24 hours
-3. Sort and show the **top 50**
-4. Enrich those 50 with humidity, wind, precipitation, and AQI
+3. Sort and show the top **50** (world) or **25** (India)
+4. Enrich those winners with humidity, wind, precipitation, and AQI
 
-This is **not every city on Earth** — rankings are relative to the 1,000-city sample in `cities.js`.
+This is **not every city on Earth / in India** — rankings are relative to the sample in `cities.js`.
 
 | Piece | Detail |
 |---|---|
@@ -30,25 +48,37 @@ This is **not every city on Earth** — rankings are relative to the 1,000-city 
 
 ---
 
-## API calls on page load (not 1,000 requests)
+## API calls on page load (not 1 request per city)
 
 Open-Meteo accepts **many lat/lon pairs in one request**. Init does **not** call the API once per city.
 
+### World (`/thermal-atlas/`)
+
 | Step | What | Requests |
 |---|---|---|
-| Weather scan | 1,000 cities ÷ **50 per batch** | **~20** forecast calls |
+| Weather scan | ~1,000 cities ÷ **50 per batch** | **~20** forecast calls |
 | Parallelism | Up to **4** batches in flight | `CONCURRENCY = 4` |
 | Air quality | Only the **top 50** winners | **~1** AQI call |
 
-**Total ≈ 21 API calls per page load** (plus a retry if a batch fails).
+**Total ≈ 21 API calls** per world page load (plus a retry if a batch fails).
 
-Constants live in `script.js`:
+### India (`/thermal-atlas/india/`)
+
+| Step | What | Requests |
+|---|---|---|
+| Weather scan | India cities only ÷ **50 per batch** | **~2** forecast calls |
+| Air quality | Only the **top 25** winners | **~1** AQI call |
+
+**Total ≈ 3 API calls** per India page load.
+
+Constants live in `script.js` / page config:
 
 - `BATCH = 50`
 - `CONCURRENCY = 4`
-- `TOP_N = 50`
+- World: `topN: 50`
+- India: `topN: 25`, `country: "India"`
 
-AQI is fetched **after** ranking so we don’t pull air quality for all 1,000 cities.
+AQI is fetched **after** ranking so we don’t pull air quality for every scanned city.
 
 ---
 
@@ -79,10 +109,12 @@ Partial weather-batch failures are skipped when possible so rankings can still r
 
 ```
 thermal-atlas/
-├── index.html      # Page shell
-├── styles.css      # Layout + globe stage + error banner
-├── script.js       # Fetch, rank, globe, errors
-├── cities.js       # 1,000-city sample (window.THERMAL_CITIES)
+├── index.html          # World top 50
+├── india/
+│   └── index.html      # India top 25
+├── styles.css
+├── script.js           # Shared fetch / rank / globe / errors
+├── cities.js           # ~1,000-city sample (window.THERMAL_CITIES)
 └── README.md
 ```
 
@@ -95,7 +127,8 @@ cd /path/to/portfolio
 python3 -m http.server 8080
 ```
 
-Open [http://localhost:8080/thermal-atlas/](http://localhost:8080/thermal-atlas/)
+- World → [http://localhost:8080/thermal-atlas/](http://localhost:8080/thermal-atlas/)
+- India → [http://localhost:8080/thermal-atlas/india/](http://localhost:8080/thermal-atlas/india/)
 
 ---
 
