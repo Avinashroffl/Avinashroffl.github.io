@@ -1,86 +1,67 @@
-# Avinash R — Portfolio
+# Avinash R — Personal Website
 
-Personal portfolio with a **macOS desktop** on large screens and an **iPhone home screen** on phones. Built with vanilla HTML, CSS, and JavaScript — no build step, ready for GitHub Pages.
+Vanilla HTML / CSS / JS site on **GitHub Pages** — no build step, no framework.
 
-## Live
+Two surfaces share this repo:
 
-**[avinashroffl.github.io](https://avinashroffl.github.io)**
+| Path | What it is |
+|---|---|
+| [`/`](https://avinashroffl.github.io/) | Interactive portfolio (macOS desktop + iPhone shell) |
+| [`/professional/`](https://avinashroffl.github.io/professional/) | Single-page professional resume |
 
-## Dual experience
+---
+
+## Live links
+
+* **Portfolio:** [avinashroffl.github.io](https://avinashroffl.github.io)
+* **Professional resume:** [avinashroffl.github.io/professional](https://avinashroffl.github.io/professional)
+* **GitHub repo:** [Avinashroffl/Avinashroffl.github.io](https://github.com/Avinashroffl/Avinashroffl.github.io)
+
+---
+
+## About the author
+
+**Avinash R** — Member Technical Staff @ Zoho · Backend Developer (Java & Spring Boot)
+
+* 3+ years building high-performance REST APIs, distributed systems, and event-driven backends for enterprise SaaS
+* B.Tech Information Technology — Thiagarajar College of Engineering (Best Outgoing Student, 2019–23)
+* Based in Chennai / Greater Madurai
+
+**Contact**
+
+* Email: [avinashroffl@gmail.com](mailto:avinashroffl@gmail.com)
+* LinkedIn: [avinashrofficial](https://www.linkedin.com/in/avinashrofficial/)
+* GitHub: [avinashroffl](https://github.com/avinashroffl)
+
+---
+
+## 1. Interactive portfolio (`/`)
+
+A dual-shell experience that switches by viewport:
 
 | Viewport | Shell |
 |---|---|
-| **≥ 769px** (laptop / desktop) | macOS Finder desktop |
-| **≤ 768px** (phone / small tablet) | iPhone lock → home → apps |
+| **≥ 769px** | macOS Finder-style desktop |
+| **≤ 768px** | iPhone lock → home → apps |
 
-Resize the browser or use DevTools device mode to switch shells.
+### macOS (desktop)
 
----
+* Lock screen — click or press any key to unlock
+* Finder window — About, Experience, Projects, Skills, Education
+* Window controls — close, minimize, maximize; drag by title bar
+* Dock — section shortcuts, Launchpad, Terminal, GitHub, LinkedIn
+* Launchpad — full-screen app grid · `F4` · `⌘L` / `Ctrl+L`
+* Spotlight — jump to sections and links · `⌘K` / `Ctrl+K`
+* Terminal — interactive CLI (`help`, `neofetch`, `cat about`, …) · `⌘T` / `Ctrl+T`
+* About This Mac, Notification Center, Control Center
+* Desktop icons + subtle wallpaper parallax
 
-## macOS (desktop)
+### iPhone (mobile)
 
-* **Lock screen** — Click or press any key to unlock
-* **Finder window** — Sidebar tabs: About, Experience, Projects, Skills, Education
-* **Traffic lights** — Close, minimize (toast), maximize / restore
-* **Draggable windows** — Drag Finder or Terminal by the title bar
-* **Dock** — Section shortcuts, Launchpad, Terminal, GitHub, LinkedIn
-* **Launchpad** — Full-screen app grid · Dock icon · `F4` · `⌘L` / `Ctrl+L`
-* **Spotlight** — Jump to sections and links · `⌘K` / `Ctrl+K`
-* **Terminal** — Interactive CLI (`help`, `neofetch`, `cat about`, `open skills`, …) · `⌘T` / `Ctrl+T`
-* **About This Mac** — Career-themed system specs dialog
-* **Notification Center** — Boot banners + slide-over panel (bell or clock)
-* **Control Center** — Wi‑Fi, Focus (Do Not Disturb), appearance dim, brightness
-* **Desktop icons** — About, Projects, Terminal
-* **Wallpaper parallax** — Subtle mouse-follow on desktop
-
-## iPhone (mobile)
-
-* **Lock screen** — Large clock · swipe up or tap to unlock
-* **Unlock animation** — Lock lifts away; home springs from zoomed/blurred → sharp with staggered icons
-* **Home screen** — Greeting widget, app grid, glass dock, Dynamic Island status bar
-* **Apps** — Full-screen sections that zoom open/close from the tapped icon
-* **Home indicator** — Tap to return from an app
-* **Safe areas** — Respects notch / home-indicator insets
-
----
-
-## Content
-
-Aligned with [LinkedIn](https://www.linkedin.com/in/avinashrofficial/) and resume highlights:
-
-* Zoho WorkDrive — version retention, Large File View, SSL automation, storage alerts
-* Skills — Java, Spring Boot, Kafka, Redis, MySQL, GCP, Docker, system design
-* Projects — E-commerce (Spring Boot + Vue), this portfolio, Madurai COVID tracker
-* Education — B.Tech IT @ TCE, CGPA 9.49, Best Outgoing Student 2019–23
-
----
-
-## Tech stack
-
-* HTML5 · CSS3 (Flexbox, Grid, backdrop-filter, animations)
-* Vanilla JavaScript (no frameworks)
-* Google Fonts — Inter, JetBrains Mono
-* Inline SVG icons
-
-## Project structure
-
-```
-├── index.html        # macOS + iPhone shells
-├── styles.css        # Layout, dual-shell breakpoints, animations
-├── script.js         # Tabs, Terminal, Spotlight, iOS unlock, Launchpad
-├── profile.jpeg      # Profile photo
-├── background.png    # Wallpaper (desktop + lock screens)
-└── README.md
-```
-
-## Local preview
-
-```bash
-python3 -m http.server 8080
-# open http://localhost:8080
-```
-
-Static files only — push to the `main` branch of `Avinashroffl.github.io` and GitHub Pages serves them from the repo root.
+* Lock screen with large clock — swipe up or tap to unlock
+* Spring unlock animation into home grid
+* Full-screen section apps with zoom open/close
+* Glass dock, Dynamic Island–style status bar, safe-area insets
 
 ### Keyboard shortcuts (desktop)
 
@@ -93,12 +74,78 @@ Static files only — push to the `main` branch of `Avinashroffl.github.io` and 
 
 ---
 
-## Author
+## 2. Professional resume (`/professional/`)
 
-**Avinash R**  
-Member Technical Staff @ Zoho · Backend Developer (Java & Spring Boot)  
-B.Tech IT, Thiagarajar College of Engineering (Best Outgoing Student 2019–23)
+A focused, recruiter-friendly single page — midnight teal theme, mobile-responsive, print-friendly styles retained in CSS.
 
-* [LinkedIn](https://www.linkedin.com/in/avinashrofficial/)
-* [GitHub](https://github.com/avinashroffl)
-* [Email](mailto:avinashroffl@gmail.com)
+### Highlights
+
+* Sticky nav with scroll spy and mobile hamburger menu
+* Hero with contact CTAs (email, LinkedIn, GitHub)
+* Impact metrics, experience, skills (incl. Generative AI / Copilot), projects, education
+* Interactive CSS on fine pointers: custom cursor, magnetic buttons, tilt/spotlight tiles, ambient mouse-follow gradient
+* Scroll progress bar, tech marquee, scroll-reveal animations
+* Respects `prefers-reduced-motion` and touch devices (interactions toned down)
+
+### Hire / contact
+
+* **Hire me** and **Email Avinash** open `mailto:avinashroffl@gmail.com`
+
+---
+
+## Content overview
+
+Aligned with professional experience (not a full dump of every product detail):
+
+* **Zoho** — version-retention settings at multi-DC scale, large-file APIs, SSL/domain enablement, storage monitoring, production support
+* **Skills** — Java, Spring Boot, Kafka, Redis, MySQL, GCP, Docker, system design, Generative AI (GitHub Copilot, Cursor)
+* **Projects** — Full-stack e-commerce (Spring Boot + Vue), this interactive portfolio, Madurai COVID tracker
+* **Education** — B.Tech IT @ TCE · Best Outgoing Student 2019–23
+
+---
+
+## Tech stack
+
+* HTML5 · CSS3 (Grid, Flexbox, custom properties, backdrop-filter, animations)
+* Vanilla JavaScript (no frameworks, no bundler)
+* Google Fonts — portfolio: Inter / JetBrains Mono · professional: Outfit / Source Serif 4
+* Hosted as static files on GitHub Pages
+
+---
+
+## Project structure
+
+```
+├── index.html           # Interactive portfolio (macOS + iPhone)
+├── styles.css
+├── script.js
+├── profile.jpeg         # Shared profile photo
+├── background.png       # Desktop / lock wallpaper
+├── professional/
+│   ├── index.html       # Professional resume page
+│   ├── styles.css
+│   └── script.js
+└── README.md
+```
+
+---
+
+## Local preview
+
+```bash
+cd /path/to/portfolio
+python3 -m http.server 8080
+```
+
+Then open:
+
+* Portfolio → [http://localhost:8080/](http://localhost:8080/)
+* Professional → [http://localhost:8080/professional/](http://localhost:8080/professional/)
+
+Push to `main` on `Avinashroffl.github.io` and GitHub Pages serves from the repo root.
+
+---
+
+## License / use
+
+Personal portfolio site for Avinash R. Feel free to explore the code for inspiration; please don’t republish the personal content or photos as your own.
