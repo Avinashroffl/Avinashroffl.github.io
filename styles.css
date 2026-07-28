@@ -114,6 +114,10 @@ body {
   border: 1px solid rgba(148, 163, 184, 0.35);
 }
 
+.desktop-icon-img--resume {
+  background: linear-gradient(160deg, #5eead4, #0f766e);
+}
+
 .desktop-icon-label {
   font-size: 11px;
   text-align: center;
