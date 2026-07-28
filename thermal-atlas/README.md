@@ -1,6 +1,8 @@
 # Thermal Atlas · Top 50 Hottest Cities
 
-Live site: [avinashroffl.github.io/top50](https://avinashroffl.github.io/top50/)
+Live site: [avinashroffl.github.io/thermal-atlas](https://avinashroffl.github.io/thermal-atlas/)
+
+Old `/top50/` links redirect to `/thermal-atlas/`.
 
 Static HTML / CSS / JS on GitHub Pages. The browser fetches fresh weather on every visit — **no daily manual updates**. Leave it alone until the API or CDN changes.
 
@@ -23,7 +25,7 @@ This is **not every city on Earth** — rankings are relative to the 1,000-city 
 |---|---|
 | **API** | Open-Meteo Forecast + `past_days=1` hourly `temperature_2m`, `relative_humidity_2m`, `wind_speed_10m`, `precipitation` |
 | **AQI** | Open-Meteo Air Quality API — `us_aqi` (fallback `european_aqi`) |
-| **Host** | Pure HTML / CSS / JS — `top50/` on GitHub Pages |
+| **Host** | Pure HTML / CSS / JS — `thermal-atlas/` on GitHub Pages |
 | **Globe** | WebGL Earth via [globe.gl](https://globe.gl) (Three.js); heat pins from lat/lon |
 
 ---
@@ -76,7 +78,7 @@ Partial weather-batch failures are skipped when possible so rankings can still r
 ## Project files
 
 ```
-top50/
+thermal-atlas/
 ├── index.html      # Page shell
 ├── styles.css      # Layout + globe stage + error banner
 ├── script.js       # Fetch, rank, globe, errors
@@ -93,7 +95,7 @@ cd /path/to/portfolio
 python3 -m http.server 8080
 ```
 
-Open [http://localhost:8080/top50/](http://localhost:8080/top50/)
+Open [http://localhost:8080/thermal-atlas/](http://localhost:8080/thermal-atlas/)
 
 ---
 

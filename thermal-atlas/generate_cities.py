@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate top50/cities.js — 1000 heat-prone / major cities."""
+"""Generate thermal-atlas/cities.js — 1000 heat-prone / major cities."""
 
 from __future__ import annotations
 

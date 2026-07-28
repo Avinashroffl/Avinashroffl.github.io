@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Top 50 Hottest Cities · Thermal Atlas</title>
+    <meta
+      name="description"
+      content="Live top 50 hottest cities from the past 24 hours on an interactive 3D globe — temperature, humidity, wind, precipitation, and AQI via Open-Meteo."
+    />
+    <meta name="theme-color" content="#0d3d42" />
+    <link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="sky" aria-hidden="true">
+      <div class="sky__wash"></div>
+      <div class="sky__orb"></div>
+      <div class="sky__grain"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="topbar__brand" href="./">
+        <span class="topbar__mark" aria-hidden="true"></span>
+        Thermal Atlas
+      </a>
+      <nav class="topbar__nav" aria-label="Primary">
+        <a href="#globe">Globe</a>
+        <a href="#rankings">Top 50</a>
+      </nav>
+      <button type="button" class="btn btn--ghost btn--sm" id="refresh-btn">Refresh</button>
+    </header>
+
+    <section class="hero" id="globe" aria-labelledby="hero-title">
+      <div class="hero__copy">
+        <p class="eyebrow">Past 24 hours · live Open-Meteo</p>
+        <h1 id="hero-title" class="hero__brand">Thermal Atlas</h1>
+        <p class="hero__lede">
+          Drag the Earth. Tap a city. Top 50 hottest from a live scan of 1,000 heat-prone cities —
+          with humidity, wind, rain, and air quality.
+        </p>
+        <p class="status" id="status" role="status">Spinning up the globe…</p>
+
+        <div class="error-banner" id="error-banner" hidden role="alert">
+          <div class="error-banner__icon" aria-hidden="true">!</div>
+          <div class="error-banner__body">
+            <p class="error-banner__title" id="error-title">Couldn’t load live weather</p>
+            <p class="error-banner__detail" id="error-detail"></p>
+            <p class="error-banner__hint" id="error-hint">
+              The site is fine — Open-Meteo just didn’t respond. Try again in a moment.
+            </p>
+            <button type="button" class="btn btn--primary btn--sm" id="error-retry">Try again</button>
+          </div>
+        </div>
+
+        <aside class="focus-card" id="focus-card" hidden>
+          <div class="focus-card__head">
+            <span class="focus-card__rank" id="focus-rank">#01</span>
+            <div>
+              <h2 class="focus-card__city" id="focus-city">—</h2>
+              <p class="focus-card__country" id="focus-country">—</p>
+            </div>
+            <p class="focus-card__temp" id="focus-temp">—°</p>
+          </div>
+          <dl class="metrics" id="focus-metrics">
+            <div><dt>Humidity</dt><dd id="m-humidity">—</dd></div>
+            <div><dt>Wind</dt><dd id="m-wind">—</dd></div>
+            <div><dt>Precip 24h</dt><dd id="m-precip">—</dd></div>
+            <div><dt>AQI</dt><dd id="m-aqi">—</dd></div>
+          </dl>
+        </aside>
+      </div>
+
+      <div class="globe-panel">
+        <div class="globe-stage" id="globe-stage">
+          <div id="globe-viz" class="globe-viz" role="img" aria-label="Interactive 3D world globe"></div>
+          <div class="globe-hint" id="globe-hint">Drag to explore · scroll to zoom · tap a heat pin</div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section class="rankings" id="rankings" aria-labelledby="rankings-title">
+        <div class="section-head">
+          <h2 id="rankings-title">Hottest fifty</h2>
+          <p>
+            Ranked by max hourly temperature over the last 24 hours
+            <span id="sample-size">(from 1,000 cities)</span>. Select a row to fly the globe there.
+          </p>
+        </div>
+
+        <div class="legend" aria-hidden="true">
+          <span>Cooler</span>
+          <div class="legend__bar"></div>
+          <span>Hotter</span>
+        </div>
+
+        <ol class="heat-list" id="heat-list"></ol>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Data ©
+        <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>
+        (CC BY 4.0) ·
+        <a href="../">Avinash R</a> ·
+        <a href="../professional/">Professional</a>
+      </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/globe.gl@2.41.4/dist/globe.gl.min.js"></script>
+    <script src="./cities.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
