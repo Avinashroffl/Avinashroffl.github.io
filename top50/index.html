@@ -42,10 +42,22 @@
         <p class="eyebrow">Past 24 hours · live Open-Meteo</p>
         <h1 id="hero-title" class="hero__brand">Thermal Atlas</h1>
         <p class="hero__lede">
-          Drag the Earth. Tap a city. See the fifty hottest places from a worldwide sample —
+          Drag the Earth. Tap a city. Top 50 hottest from a live scan of 1,000 heat-prone cities —
           with humidity, wind, rain, and air quality.
         </p>
         <p class="status" id="status" role="status">Spinning up the globe…</p>
+
+        <div class="error-banner" id="error-banner" hidden role="alert">
+          <div class="error-banner__icon" aria-hidden="true">!</div>
+          <div class="error-banner__body">
+            <p class="error-banner__title" id="error-title">Couldn’t load live weather</p>
+            <p class="error-banner__detail" id="error-detail"></p>
+            <p class="error-banner__hint" id="error-hint">
+              The site is fine — Open-Meteo just didn’t respond. Try again in a moment.
+            </p>
+            <button type="button" class="btn btn--primary btn--sm" id="error-retry">Try again</button>
+          </div>
+        </div>
 
         <aside class="focus-card" id="focus-card" hidden>
           <div class="focus-card__head">
@@ -79,7 +91,7 @@
           <h2 id="rankings-title">Hottest fifty</h2>
           <p>
             Ranked by max hourly temperature over the last 24 hours
-            <span id="sample-size"></span>. Select a row to fly the globe there.
+            <span id="sample-size">(from 1,000 cities)</span>. Select a row to fly the globe there.
           </p>
         </div>
 
