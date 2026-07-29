@@ -26,7 +26,7 @@ Why ~250 for world (not 1,000)? Open-Meteo’s free tier rate-limits bursty mult
 
 World list keeps only **20** India cities (hottest desert-belt + Madurai). Full India coverage lives on the India page.
 
-The India page has its own enriched UI (`india/styles.css` + `india/enhance.js`): live mercury meter, top-3 podium, city filter, heat bars, orbit rings, and cursor glow.
+Both World and India use the shared enriched UI (`enhance.css` + `enhance.js`): live mercury meter, top-3 podium, city filter, heat bars, orbit rings, and cursor glow.
 
 ---
 
@@ -114,11 +114,11 @@ Partial weather-batch failures are skipped when possible so rankings can still r
 thermal-atlas/
 ├── index.html          # World top 50
 ├── cities.js           # ~250 world cities (20 India)
+├── enhance.css         # Shared enriched UI styles
+├── enhance.js          # Shared meter / podium / filter
 ├── india/
 │   ├── index.html      # India top 25
-│   ├── cities.js       # 100 India-only cities
-│   ├── styles.css
-│   └── enhance.js
+│   └── cities.js       # 100 India-only cities
 ├── styles.css
 ├── script.js
 └── README.md

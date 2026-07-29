@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="india-page">
+<html lang="en" class="india-page page-india">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -17,9 +17,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../styles.css" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../enhance.css" />
   </head>
-  <body class="india-body">
+  <body class="india-body page-india">
     <div class="sky india-sky" aria-hidden="true">
       <div class="sky__wash"></div>
       <div class="sky__orb"></div>
@@ -166,14 +166,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/globe.gl@2.41.4/dist/globe.gl.min.js"></script>
     <script src="./cities.js"></script>
-    <script src="./enhance.js"></script>
+    <script src="../enhance.js"></script>
     <script>
       window.THERMAL_ATLAS_CONFIG = {
         topN: 25,
         label: "India top 25",
         concurrency: 2,
         batchGapMs: 300,
-        onRanked: (ranked) => window.IndiaHeat?.onRanked?.(ranked),
+        onRanked: (ranked) => window.HeatUI?.onRanked?.(ranked),
       };
     </script>
     <script src="../script.js"></script>
