@@ -19,10 +19,14 @@ Both pages share `cities.js`, `styles.css`, and `script.js`. Config is set per p
 
 | Page | Filter | Ranked |
 |---|---|---|
-| `/thermal-atlas/` | All ~1,000 sample cities | Top **50** worldwide |
-| `/thermal-atlas/india/` | `country === "India"` only (~70+ in sample) | Top **25** in India |
+| `/thermal-atlas/` | Full worldwide sample in `cities.js` | Top **50** worldwide |
+| `/thermal-atlas/india/` | `country === "India"` only (**100** cities) | Top **25** in India |
 
 The top bar switches between **World** and **India**. Madurai is in the India sample, so it appears on the India tab whenever it ranks in that top 25 (even when it misses the world top 50).
+
+### India city sample (100)
+
+The India list is a curated set of **100 real cities** biased toward places that historically record the highest summer maxima (IMD / heatwave reporting): Thar Desert belt (Phalodi, Churu, Sri Ganganagar, Bikaner, Barmer, Jaisalmer, Jodhpur…), hot Gujarat, NW plains, Vidarbha, and other high-max metros. False name collisions from open city dumps (**Dubai**, **Doha**, **George Town**, **Oran**, etc. mislabeled as India) were removed; coordinates for cities like Chandigarh and Jodhpur were corrected.
 
 ---
 
@@ -66,7 +70,7 @@ Open-Meteo accepts **many lat/lon pairs in one request**. Init does **not** call
 
 | Step | What | Requests |
 |---|---|---|
-| Weather scan | India cities only ÷ **50 per batch** | **~2** forecast calls |
+| Weather scan | **100** India cities ÷ **50 per batch** | **2** forecast calls |
 | Air quality | Only the **top 25** winners | **~1** AQI call |
 
 **Total ≈ 3 API calls** per India page load.
