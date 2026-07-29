@@ -575,6 +575,13 @@
       refreshGlobePoints();
 
       selectCity(top.id, true);
+      if (typeof CONFIG.onRanked === "function") {
+        try {
+          CONFIG.onRanked(ranked.slice());
+        } catch (hookErr) {
+          console.warn("onRanked hook failed", hookErr);
+        }
+      }
       if (!reduceMotion && globe) {
         setTimeout(() => {
           if (activeId === top.id) {
@@ -590,6 +597,12 @@
       errorRetry.disabled = false;
     }
   }
+
+  window.__thermalAtlas = {
+    selectCity: (id, fly = true) => selectCity(id, fly),
+    getRanked: () => ranked.slice(),
+    reload: () => loadTemperatures(),
+  };
 
   refreshBtn.addEventListener("click", loadTemperatures);
   errorRetry.addEventListener("click", loadTemperatures);

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="india-page">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -8,24 +8,28 @@
       name="description"
       content="Live top 25 hottest cities in India from the past 24 hours — temperature, humidity, wind, precipitation, and AQI via Open-Meteo."
     />
-    <meta name="theme-color" content="#0d3d42" />
+    <meta name="theme-color" content="#0c3d38" />
     <link rel="icon" href="../../favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Sora:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
-    <div class="sky" aria-hidden="true">
+  <body class="india-body">
+    <div class="sky india-sky" aria-hidden="true">
       <div class="sky__wash"></div>
       <div class="sky__orb"></div>
+      <div class="india-sky__mesh"></div>
+      <div class="india-sky__mirage"></div>
       <div class="sky__grain"></div>
+      <div class="india-cursor-glow" id="cursor-glow"></div>
     </div>
 
-    <header class="topbar">
+    <header class="topbar india-topbar">
       <a class="topbar__brand" href="../">
         <span class="topbar__mark" aria-hidden="true"></span>
         Thermal Atlas
@@ -34,17 +38,39 @@
         <a href="../">World</a>
         <a class="is-active" href="./" aria-current="page">India</a>
       </nav>
-      <button type="button" class="btn btn--ghost btn--sm" id="refresh-btn">Refresh</button>
+      <button type="button" class="btn btn--ghost btn--sm india-refresh" id="refresh-btn">
+        <span class="india-refresh__spin" aria-hidden="true"></span>
+        Rescan
+      </button>
     </header>
 
-    <section class="hero" id="globe" aria-labelledby="hero-title">
-      <div class="hero__copy">
-        <p class="eyebrow">India · past 24 hours · live Open-Meteo</p>
-        <h1 id="hero-title" class="hero__brand">India heat</h1>
-        <p class="hero__lede">
-          Top 25 hottest from 100 heat-prone Indian cities — desert belt, plains, and hot metros —
-          with humidity, wind, rain, and air quality.
+    <section class="hero india-hero" id="globe" aria-labelledby="hero-title">
+      <div class="hero__copy india-copy">
+        <p class="eyebrow india-eyebrow">
+          <span class="india-live-dot" aria-hidden="true"></span>
+          India · past 24 hours · live
         </p>
+        <h1 id="hero-title" class="hero__brand india-brand">
+          <span class="india-brand__line">India</span>
+          <span class="india-brand__heat">heat</span>
+        </h1>
+        <p class="hero__lede">
+          Top 25 from 100 heat-prone Indian cities — desert belt, plains, and hot metros.
+          Drag the Earth. Tap a city. Feel the mercury climb.
+        </p>
+
+        <div class="india-meter" id="india-meter" aria-hidden="true">
+          <div class="india-meter__label">
+            <span>Selected heat</span>
+            <strong id="meter-temp">—°</strong>
+          </div>
+          <div class="india-meter__track">
+            <div class="india-meter__fill" id="meter-fill"></div>
+            <div class="india-meter__glow" id="meter-glow"></div>
+          </div>
+          <div class="india-meter__scale"><span>30°</span><span>40°</span><span>50°</span></div>
+        </div>
+
         <p class="status" id="status" role="status">Scanning India…</p>
 
         <div class="error-banner" id="error-banner" hidden role="alert">
@@ -59,7 +85,7 @@
           </div>
         </div>
 
-        <aside class="focus-card" id="focus-card" hidden>
+        <aside class="focus-card india-focus" id="focus-card" hidden>
           <div class="focus-card__head">
             <span class="focus-card__rank" id="focus-rank">#01</span>
             <div>
@@ -77,35 +103,57 @@
         </aside>
       </div>
 
-      <div class="globe-panel">
+      <div class="globe-panel india-globe-panel">
+        <div class="india-orbit-ring" aria-hidden="true"></div>
+        <div class="india-orbit-ring india-orbit-ring--slow" aria-hidden="true"></div>
         <div class="globe-stage" id="globe-stage">
           <div id="globe-viz" class="globe-viz" role="img" aria-label="Interactive 3D globe focused on India"></div>
-          <div class="globe-hint" id="globe-hint">Drag to explore · scroll to zoom · tap a heat pin</div>
+          <div class="globe-hint" id="globe-hint">Drag · pinch zoom · tap a heat pin</div>
         </div>
       </div>
     </section>
 
+    <section class="india-podium" id="podium" aria-label="Top three hottest cities" hidden>
+      <div class="india-podium__head">
+        <h2>Podium</h2>
+        <p>Hottest three right now</p>
+      </div>
+      <div class="india-podium__stages" id="podium-stages"></div>
+    </section>
+
     <main>
-      <section class="rankings" id="rankings" aria-labelledby="rankings-title">
-        <div class="section-head">
-          <h2 id="rankings-title">India · hottest 25</h2>
-          <p>
-            Ranked by max hourly temperature over the last 24 hours
-            <span id="sample-size">(from 100 India cities)</span>. Select a row to fly the globe there.
-          </p>
+      <section class="rankings india-rankings" id="rankings" aria-labelledby="rankings-title">
+        <div class="section-head india-section-head">
+          <div>
+            <h2 id="rankings-title">India · hottest 25</h2>
+            <p>
+              Ranked by max hourly temperature over the last 24 hours
+              <span id="sample-size">(from 100 India cities)</span>.
+            </p>
+          </div>
+          <label class="india-search">
+            <span class="india-search__icon" aria-hidden="true"></span>
+            <input
+              id="city-search"
+              type="search"
+              placeholder="Filter cities…"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </label>
         </div>
 
-        <div class="legend" aria-hidden="true">
+        <div class="legend india-legend" aria-hidden="true">
           <span>Cooler</span>
           <div class="legend__bar"></div>
           <span>Hotter</span>
         </div>
 
-        <ol class="heat-list" id="heat-list"></ol>
+        <ol class="heat-list india-heat-list" id="heat-list"></ol>
       </section>
     </main>
 
-    <footer class="footer">
+    <footer class="footer india-footer">
       <p>
         Data ©
         <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>
@@ -118,11 +166,13 @@
 
     <script src="https://cdn.jsdelivr.net/npm/globe.gl@2.41.4/dist/globe.gl.min.js"></script>
     <script src="../cities.js"></script>
+    <script src="./enhance.js"></script>
     <script>
       window.THERMAL_ATLAS_CONFIG = {
         topN: 25,
         country: "India",
         label: "India top 25",
+        onRanked: (ranked) => window.IndiaHeat?.onRanked?.(ranked),
       };
     </script>
     <script src="../script.js"></script>

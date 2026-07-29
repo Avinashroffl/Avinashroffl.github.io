@@ -24,6 +24,8 @@ Both pages share `cities.js`, `styles.css`, and `script.js`. Config is set per p
 
 The top bar switches between **World** and **India**. Madurai is in the India sample, so it appears on the India tab whenever it ranks in that top 25 (even when it misses the world top 50).
 
+The India page has its own enriched UI (`india/styles.css` + `india/enhance.js`): live mercury meter, top-3 podium, city filter, heat bars, orbit rings, and cursor glow — without changing the World view.
+
 ### India city sample (100)
 
 The India list is a curated set of **100 real cities** biased toward places that historically record the highest summer maxima (IMD / heatwave reporting): Thar Desert belt (Phalodi, Churu, Sri Ganganagar, Bikaner, Barmer, Jaisalmer, Jodhpur…), hot Gujarat, NW plains, Vidarbha, and other high-max metros. False name collisions from open city dumps (**Dubai**, **Doha**, **George Town**, **Oran**, etc. mislabeled as India) were removed; coordinates for cities like Chandigarh and Jodhpur were corrected.
@@ -115,10 +117,12 @@ Partial weather-batch failures are skipped when possible so rankings can still r
 thermal-atlas/
 ├── index.html          # World top 50
 ├── india/
-│   └── index.html      # India top 25
+│   ├── index.html      # India top 25
+│   ├── styles.css      # India-only visual system
+│   └── enhance.js      # Podium, filter, meter, interactions
 ├── styles.css
 ├── script.js           # Shared fetch / rank / globe / errors
-├── cities.js           # ~1,000-city sample (window.THERMAL_CITIES)
+├── cities.js           # Worldwide + 100 India sample
 └── README.md
 ```
 
