@@ -1,6 +1,7 @@
 /** Sample of 1000 heat-prone / major cities. Top 50 rankings are relative to this set. */
 window.THERMAL_CITIES = [
   { name: "Kabul", country: "Afghanistan", lat: 34.52813, lon: 69.17233 },
+  { name: "Madurai", country: "India", lat: 9.9252, lon: 78.1198 },
   { name: "Mashhad", country: "Afghanistan", lat: 36.81665, lon: 70.10211 },
   { name: "Algiers", country: "Algeria", lat: 36.73225, lon: 3.08746 },
   { name: "Annaba", country: "Algeria", lat: 36.9, lon: 7.76667 },
@@ -988,7 +989,6 @@ window.THERMAL_CITIES = [
   { name: "Kota", country: "India", lat: 25.2138, lon: 75.8648 },
   { name: "Kurnool", country: "India", lat: 15.8281, lon: 78.0373 },
   { name: "Lucknow", country: "India", lat: 26.8467, lon: 80.9462 },
-  { name: "Madurai", country: "India", lat: 9.9252, lon: 78.1198 },
   { name: "Mathura", country: "India", lat: 27.4924, lon: 77.6737 },
   { name: "Meerut", country: "India", lat: 28.9845, lon: 77.7064 },
   { name: "Moradabad", country: "India", lat: 28.8386, lon: 78.7733 },
