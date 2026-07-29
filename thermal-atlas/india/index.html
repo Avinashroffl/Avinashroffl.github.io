@@ -165,13 +165,14 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/globe.gl@2.41.4/dist/globe.gl.min.js"></script>
-    <script src="../cities.js"></script>
+    <script src="./cities.js"></script>
     <script src="./enhance.js"></script>
     <script>
       window.THERMAL_ATLAS_CONFIG = {
         topN: 25,
-        country: "India",
         label: "India top 25",
+        concurrency: 2,
+        batchGapMs: 300,
         onRanked: (ranked) => window.IndiaHeat?.onRanked?.(ranked),
       };
     </script>

@@ -7,8 +7,10 @@
   const CITIES = COUNTRY_FILTER
     ? ALL_CITIES.filter((c) => c.country === COUNTRY_FILTER)
     : ALL_CITIES;
-  const BATCH = 50;
-  const CONCURRENCY = 4;
+  const BATCH = CONFIG.batch || 50;
+  // Keep concurrency low — Open-Meteo free tier rate-limits bursty multi-location scans
+  const CONCURRENCY = CONFIG.concurrency || 2;
+  const BATCH_GAP_MS = CONFIG.batchGapMs ?? 350;
   const WEATHER_API = "https://api.open-meteo.com/v1/forecast";
   const AQI_API = "https://air-quality-api.open-meteo.com/v1/air-quality";
   const EARTH_IMG =
@@ -493,6 +495,9 @@
       while (next < items.length) {
         const i = next++;
         results[i] = await worker(items[i], i);
+        if (BATCH_GAP_MS > 0 && next < items.length) {
+          await new Promise((r) => setTimeout(r, BATCH_GAP_MS));
+        }
       }
     }
     await Promise.all(

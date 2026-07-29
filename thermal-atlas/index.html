@@ -42,7 +42,7 @@
         <p class="eyebrow">Past 24 hours · live Open-Meteo</p>
         <h1 id="hero-title" class="hero__brand">Thermal Atlas</h1>
         <p class="hero__lede">
-          Drag the Earth. Tap a city. Top 50 hottest from a live scan of 1,000 heat-prone cities —
+          Drag the Earth. Tap a city. Top 50 hottest from a live scan of ~250 heat-prone cities —
           with humidity, wind, rain, and air quality.
         </p>
         <p class="status" id="status" role="status">Spinning up the globe…</p>
@@ -91,7 +91,7 @@
           <h2 id="rankings-title">Hottest fifty</h2>
           <p>
             Ranked by max hourly temperature over the last 24 hours
-            <span id="sample-size">(from 1,000 cities)</span>. Select a row to fly the globe there.
+            <span id="sample-size">(from ~250 cities)</span>. Select a row to fly the globe there.
           </p>
         </div>
 
@@ -121,6 +121,8 @@
       window.THERMAL_ATLAS_CONFIG = {
         topN: 50,
         label: "top 50",
+        concurrency: 2,
+        batchGapMs: 400,
       };
     </script>
     <script src="./script.js"></script>

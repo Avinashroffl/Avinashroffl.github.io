@@ -15,20 +15,18 @@ Static HTML / CSS / JS on GitHub Pages. The browser fetches fresh weather on eve
 
 ## Views / tabs
 
-Both pages share `cities.js`, `styles.css`, and `script.js`. Config is set per page via `window.THERMAL_ATLAS_CONFIG`:
+Pages share `styles.css` + `script.js`, but use **separate city lists**:
 
-| Page | Filter | Ranked |
-|---|---|---|
-| `/thermal-atlas/` | Full worldwide sample in `cities.js` | Top **50** worldwide |
-| `/thermal-atlas/india/` | `country === "India"` only (**100** cities) | Top **25** in India |
+| Page | City file | Sample size | Ranked |
+|---|---|---|---|
+| `/thermal-atlas/` | `cities.js` | **~250** world cities (**20** India) | Top **50** |
+| `/thermal-atlas/india/` | `india/cities.js` | **100** India-only | Top **25** |
 
-The top bar switches between **World** and **India**. Madurai is in the India sample, so it appears on the India tab whenever it ranks in that top 25 (even when it misses the world top 50).
+Why ~250 for world (not 1,000)? Open-Meteo’s free tier rate-limits bursty multi-location scans (`Minutely API request limit exceeded`). At 50 cities/batch, **250 cities ≈ 5 weather batches** (+ 1 AQI) — reliable with `concurrency: 2` and a short gap between batches. 1,000 cities (~20 batches) routinely skipped 8+ batches.
 
-The India page has its own enriched UI (`india/styles.css` + `india/enhance.js`): live mercury meter, top-3 podium, city filter, heat bars, orbit rings, and cursor glow — without changing the World view.
+World list keeps only **20** India cities (hottest desert-belt + Madurai). Full India coverage lives on the India page.
 
-### India city sample (100)
-
-The India list is a curated set of **100 real cities** biased toward places that historically record the highest summer maxima (IMD / heatwave reporting): Thar Desert belt (Phalodi, Churu, Sri Ganganagar, Bikaner, Barmer, Jaisalmer, Jodhpur…), hot Gujarat, NW plains, Vidarbha, and other high-max metros. False name collisions from open city dumps (**Dubai**, **Doha**, **George Town**, **Oran**, etc. mislabeled as India) were removed; coordinates for cities like Chandigarh and Jodhpur were corrected.
+The India page has its own enriched UI (`india/styles.css` + `india/enhance.js`): live mercury meter, top-3 podium, city filter, heat bars, orbit rings, and cursor glow.
 
 ---
 
@@ -38,12 +36,12 @@ Temperatures (and related metrics) come from [Open-Meteo](https://open-meteo.com
 
 On each visit we:
 
-1. Scan the relevant city sample (world or India-filtered)
+1. Scan the page’s city sample (`cities.js` or `india/cities.js`)
 2. Take each city’s **max hourly temperature** from the past 24 hours
 3. Sort and show the top **50** (world) or **25** (India)
 4. Enrich those winners with humidity, wind, precipitation, and AQI
 
-This is **not every city on Earth / in India** — rankings are relative to the sample in `cities.js`.
+This is **not every city on Earth / in India** — rankings are relative to each page’s sample.
 
 | Piece | Detail |
 |---|---|
@@ -62,11 +60,11 @@ Open-Meteo accepts **many lat/lon pairs in one request**. Init does **not** call
 
 | Step | What | Requests |
 |---|---|---|
-| Weather scan | ~1,000 cities ÷ **50 per batch** | **~20** forecast calls |
-| Parallelism | Up to **4** batches in flight | `CONCURRENCY = 4` |
+| Weather scan | **~250** cities ÷ **50 per batch** | **~5** forecast calls |
+| Parallelism | Up to **2** batches in flight + **400ms** gap | rate-limit safe |
 | Air quality | Only the **top 50** winners | **~1** AQI call |
 
-**Total ≈ 21 API calls** per world page load (plus a retry if a batch fails).
+**Total ≈ 6 API calls** per world page load.
 
 ### India (`/thermal-atlas/india/`)
 
@@ -77,12 +75,11 @@ Open-Meteo accepts **many lat/lon pairs in one request**. Init does **not** call
 
 **Total ≈ 3 API calls** per India page load.
 
-Constants live in `script.js` / page config:
+Config (`THERMAL_ATLAS_CONFIG`):
 
-- `BATCH = 50`
-- `CONCURRENCY = 4`
+- `batch: 50`, `concurrency: 2`, `batchGapMs: 300–400`
 - World: `topN: 50`
-- India: `topN: 25`, `country: "India"`
+- India: `topN: 25` (loads `india/cities.js`)
 
 AQI is fetched **after** ranking so we don’t pull air quality for every scanned city.
 
@@ -116,13 +113,14 @@ Partial weather-batch failures are skipped when possible so rankings can still r
 ```
 thermal-atlas/
 ├── index.html          # World top 50
+├── cities.js           # ~250 world cities (20 India)
 ├── india/
 │   ├── index.html      # India top 25
-│   ├── styles.css      # India-only visual system
-│   └── enhance.js      # Podium, filter, meter, interactions
+│   ├── cities.js       # 100 India-only cities
+│   ├── styles.css
+│   └── enhance.js
 ├── styles.css
-├── script.js           # Shared fetch / rank / globe / errors
-├── cities.js           # Worldwide + 100 India sample
+├── script.js
 └── README.md
 ```
 
