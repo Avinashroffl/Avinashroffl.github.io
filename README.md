@@ -7,7 +7,7 @@ Two surfaces share this repo:
 | Path | What it is |
 |---|---|
 | [`/`](https://avinashroffl.github.io/) | Interactive portfolio (macOS desktop + iPhone shell) |
-| [`/professional/`](https://avinashroffl.github.io/professional/) | Recruiter-focused backend resume page |
+| [`/professional/`](https://avinashroffl.github.io/professional/) | Recruiter-focused full stack developer resume page |
 
 ---
 
@@ -21,9 +21,9 @@ Two surfaces share this repo:
 
 ## About the author
 
-**Avinash R** — Member Technical Staff @ Zoho · Backend Engineer (Java · Spring Boot · MySQL)
+**Avinash R** — Member Technical Staff @ Zoho · Full Stack Developer (Java · Spring Boot · MySQL)
 
-* Ships production SaaS backends with measurable impact (storage, latency, reliability)
+* Ships production SaaS applications with measurable impact (storage, latency, reliability)
 * B.Tech Information Technology — Thiagarajar College of Engineering (Best Outgoing Student, 2019–23)
 * Based in Chennai / Greater Madurai
 
@@ -122,7 +122,7 @@ Recruiter-focused single page — midnight teal theme, mobile-responsive, honest
 ├── apple-touch-icon.png
 ├── background.png       # Desktop / lock wallpaper
 ├── professional/
-│   ├── index.html       # Recruiter-focused backend page
+│   ├── index.html       # Recruiter-focused full stack resume page
 │   ├── styles.css
 │   └── script.js
 └── README.md

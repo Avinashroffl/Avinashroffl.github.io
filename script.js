@@ -135,7 +135,7 @@ const NOTIFICATIONS = [
     id: "role",
     app: "Zoho",
     title: "Member Technical Staff",
-    body: "Building scalable backend systems for enterprise SaaS — Java, Spring Boot, and distributed services.",
+    body: "Building scalable full stack systems for enterprise SaaS — Java, Spring Boot, and distributed services.",
     action: () => { openFinderWindow(); switchTab("experience"); },
   },
 ];
@@ -261,8 +261,8 @@ const TERM_HELP = `Available commands:
 
 const TERM_FILES = {
   about: `Avinash R — Member Technical Staff @ Zoho
-Backend Developer (Java & Spring Boot)
-3+ years building scalable SaaS backends for Zoho WorkDrive.
+Full Stack Developer (Java & Spring Boot)
+3+ years building scalable SaaS solutions for Zoho WorkDrive.
 Highlights: 100+ TB storage saved daily · 95% faster Large File View · SSL 3d→<4h`,
   experience: `Member Technical Staff · Zoho (Jun 2023 – Present)
   Version Retention, Large File View, SSL automation, storage alerts, admin dashboard
@@ -337,7 +337,7 @@ function termRun(raw) {
       termPrint(TERM_HELP);
       break;
     case "whoami":
-      termPrint("avinash — backend engineer @ zoho · java · spring boot · workdrive", "term-ok");
+      termPrint("avinash — full stack developer @ zoho · java · spring boot · workdrive", "term-ok");
       break;
     case "neofetch":
       termPrint(`<span class="term-accent">avinash@portfolio</span>
@@ -347,7 +347,7 @@ Stack     Java, Spring Boot, Kafka, Redis, MySQL
 Focus     Storage · Versioning · SSL automation
 Edu       B.Tech IT, TCE · CGPA 9.49
 Award     Best Outgoing Student 2019–23
-Uptime    3+ years shipping SaaS backends`);
+Uptime    3+ years shipping full stack SaaS`);
       break;
     case "ls":
       termPrint("about  experience  projects  skills  education  contact");
